@@ -33,25 +33,32 @@
 <body class="bg-white text-gray-800 antialiased">
   <a class="skip-link rounded-full bg-gold px-4 py-2 font-bold text-navy" href="#main">Skip to content</a>
   <header data-site-header class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Primary navigation">
-      <a href="index.html" class="flex items-center gap-3 rounded-full focus:outline-none focus:ring-4 focus:ring-gold/50">
-        <img src="img/splitano-mark.svg" alt="Splitano logo" class="h-10 w-10">
-        <span class="text-xl font-extrabold tracking-tight text-navy">Splitano<span class="text-gold">.</span></span>
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8" aria-label="Primary navigation">
+      <a href="index.html" class="group flex items-center gap-3 rounded-full focus:outline-none focus:ring-4 focus:ring-gold/50">
+        <span class="relative grid h-12 w-12 place-items-center rounded-2xl bg-navy shadow-lg shadow-navy/20">
+          <img src="img/splitano-mark.svg" alt="Splitano logo" class="h-10 w-10">
+          <span class="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-gold ring-2 ring-white"></span>
+        </span>
+        <span class="text-2xl font-extrabold tracking-tight text-navy">Splitano<span class="text-gold">.</span></span>
       </a>
       <div class="hidden items-center gap-8 lg:flex">
-        <a class="text-sm font-bold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="how-it-works.html">How It Works</a>
-        <a class="text-sm font-bold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="credit-builder.html">Credit Builder</a>
-        <a class="text-sm font-bold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="bill-savings.html">Bill Savings</a>
-        <a class="text-sm font-bold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="about.html">About Us</a>
-        <a class="text-sm font-bold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="business.html">Business</a>
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="how-it-works.html">How It Works</a>
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="credit-builder.html">Credit Builder</a>
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="bill-savings.html">Bill Savings</a>
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="about.html">About Us</a>
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="business.html">Business</a>
       </div>
-      <button data-nav-toggle class="rounded-full border border-navy/10 bg-white/90 p-3 text-navy shadow-sm focus:outline-none focus:ring-4 focus:ring-gold/40 lg:hidden" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation">
+      <div class="hidden items-center lg:flex">
+        <a class="btn-gold px-6 py-3 text-sm" href="contact.html">Get Started</a>
+      </div>
+      <button data-nav-toggle class="rounded-full border border-navy/10 bg-white/95 p-3 text-navy shadow-lg shadow-navy/10 focus:outline-none focus:ring-4 focus:ring-gold/40 lg:hidden" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation">
         <span class="block h-0.5 w-6 bg-current"></span>
         <span class="mt-1.5 block h-0.5 w-6 bg-current"></span>
         <span class="mt-1.5 block h-0.5 w-6 bg-current"></span>
       </button>
     </nav>
-    <div id="mobile-navigation" data-mobile-nav class="fixed inset-y-0 right-0 z-50 w-full translate-x-full bg-navy px-6 py-6 text-white transition-transform duration-300 lg:hidden">
+    <div data-nav-overlay aria-hidden="true" class="pointer-events-none fixed inset-0 z-40 bg-navy/60 opacity-0 backdrop-blur-sm transition-opacity duration-300 lg:hidden"></div>
+    <div id="mobile-navigation" data-mobile-nav aria-hidden="true" class="fixed inset-y-0 right-0 z-50 w-[min(88vw,24rem)] translate-x-full bg-navy px-6 py-6 text-white shadow-2xl shadow-navy/30 transition-transform duration-300 lg:hidden">
       <div class="flex items-center justify-between">
         <a href="index.html" class="flex items-center gap-3 rounded-full focus:outline-none focus:ring-4 focus:ring-gold/50">
           <img src="img/splitano-mark.svg" alt="Splitano logo" class="h-10 w-10">
@@ -63,21 +70,22 @@
         </button>
       </div>
       <div class="mt-12 grid gap-6 text-2xl font-extrabold">
-        <a href="how-it-works.html">How It Works</a>
-        <a href="credit-builder.html">Credit Builder</a>
-        <a href="bill-savings.html">Bill Savings</a>
-        <a href="about.html">About Us</a>
-        <a href="business.html">Business</a>
+        <a data-nav-link href="how-it-works.html">How It Works</a>
+        <a data-nav-link href="credit-builder.html">Credit Builder</a>
+        <a data-nav-link href="bill-savings.html">Bill Savings</a>
+        <a data-nav-link href="about.html">About Us</a>
+        <a data-nav-link href="business.html">Business</a>
       </div>
+      <a class="btn-gold mt-10 w-full" href="contact.html">Get Started</a>
     </div>
   </header>
   <main id="main">
-    <section class="brand-shell px-5 pb-16 pt-32 lg:px-8 lg:pt-40"><div class="mx-auto max-w-4xl"><p class="section-kicker">Privacy</p><h1 class="mt-5 text-5xl font-extrabold tracking-tight text-navy">Privacy Policy</h1><p class="mt-6 leading-8 text-gray-700">Placeholder policy structure explaining Splitano data practices. Review before production use.</p></div></section>
-    <section class="px-5 py-16 lg:px-8"><article class="mx-auto max-w-4xl space-y-8 leading-8 text-gray-700"><section><h2 class="text-2xl font-extrabold text-navy">Information We Collect</h2><p class="mt-3">We may collect contact details, bill information, identity details, repayment activity, device data, and messages you send us.</p></section><section><h2 class="text-2xl font-extrabold text-navy">How We Use Information</h2><p class="mt-3">Information may be used to assess eligibility, pay billers, manage repayments, provide support, improve products, and meet legal obligations.</p></section><section><h2 class="text-2xl font-extrabold text-navy">Data Sharing</h2><p class="mt-3">We may share limited data with payment processors, billers, service providers, compliance partners, and authorities where legally required.</p></section><section><h2 class="text-2xl font-extrabold text-navy">Cookies and Your Rights</h2><p class="mt-3">You may request access, correction, deletion, restriction, or portability of certain personal information, depending on location.</p></section></article></section>
+    <section data-animate class="brand-shell px-5 pb-14 pt-32 lg:px-8 lg:pt-36"><div class="mx-auto max-w-4xl"><p class="section-kicker">Privacy</p><h1 class="mt-5 text-5xl font-extrabold tracking-tight text-navy">Privacy Policy</h1><p class="mt-6 leading-8 text-gray-700">Placeholder policy structure explaining Splitano data practices. Review before production use.</p></div></section>
+    <section data-animate class="section-pad bg-paleblue px-5 lg:px-8"><article class="lift-card mx-auto max-w-4xl space-y-8 bg-white p-8 leading-8 text-gray-700"><section data-animate><h2 class="text-2xl font-extrabold text-navy">Information We Collect</h2><p class="mt-3">We may collect contact details, bill information, identity details, repayment activity, device data, and messages you send us.</p></section><section data-animate><h2 class="text-2xl font-extrabold text-navy">How We Use Information</h2><p class="mt-3">Information may be used to assess eligibility, pay billers, manage repayments, provide support, improve products, and meet legal obligations.</p></section><section data-animate><h2 class="text-2xl font-extrabold text-navy">Data Sharing</h2><p class="mt-3">We may share limited data with payment processors, billers, service providers, compliance partners, and authorities where legally required.</p></section><section data-animate><h2 class="text-2xl font-extrabold text-navy">Cookies and Your Rights</h2><p class="mt-3">You may request access, correction, deletion, restriction, or portability of certain personal information, depending on location.</p></section></article></section>
   </main>
   <footer class="bg-navy px-5 py-14 text-white lg:px-8">
-    <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
-      <div>
+    <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+      <div class="rounded-3xl bg-white/10 p-6">
         <a href="index.html" class="flex items-center gap-3 rounded-full focus:outline-none focus:ring-4 focus:ring-gold/50">
           <img src="img/splitano-mark.svg" alt="Splitano logo" class="h-10 w-10">
           <span class="text-xl font-extrabold tracking-tight">Splitano<span class="text-gold">.</span></span>
@@ -89,7 +97,7 @@
           <a class="rounded-full bg-white/10 px-3 py-2 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-gold/40" href="contact.html" aria-label="Splitano on Instagram">ig</a>
         </div>
       </div>
-      <div>
+      <div class="border-l border-white/10 pl-0 md:pl-6">
         <h2 class="text-sm font-extrabold uppercase tracking-[0.2em] text-gold">Product</h2>
         <div class="mt-5 grid gap-3 text-paleblue">
           <a href="how-it-works.html">How It Works</a>
@@ -97,7 +105,7 @@
           <a href="bill-savings.html">Bill Savings</a>
         </div>
       </div>
-      <div>
+      <div class="border-l border-white/10 pl-0 md:pl-6">
         <h2 class="text-sm font-extrabold uppercase tracking-[0.2em] text-gold">Company</h2>
         <div class="mt-5 grid gap-3 text-paleblue">
           <a href="about.html">About Us</a>
@@ -106,7 +114,7 @@
           <a href="contact.html">Careers</a>
         </div>
       </div>
-      <div>
+      <div class="border-l border-white/10 pl-0 md:pl-6">
         <h2 class="text-sm font-extrabold uppercase tracking-[0.2em] text-gold">Legal</h2>
         <div class="mt-5 grid gap-3 text-paleblue">
           <a href="terms.html">Terms of Service</a>

@@ -2,6 +2,7 @@
   const header = document.querySelector("[data-site-header]");
   const navToggle = document.querySelector("[data-nav-toggle]");
   const mobileNav = document.querySelector("[data-mobile-nav]");
+  const navOverlay = document.querySelector("[data-nav-overlay]");
   const closeNav = document.querySelector("[data-nav-close]");
 
   const setHeaderState = () => {
@@ -12,9 +13,12 @@
   const setNavOpen = (isOpen) => {
     if (!navToggle || !mobileNav) return;
     navToggle.setAttribute("aria-expanded", String(isOpen));
-    mobileNav.classList.toggle("translate-x-full", !isOpen);
-    mobileNav.classList.toggle("translate-x-0", isOpen);
+    mobileNav.setAttribute("aria-hidden", String(!isOpen));
+    navOverlay?.setAttribute("aria-hidden", String(!isOpen));
     document.body.classList.toggle("nav-open", isOpen);
+    if (isOpen) {
+      closeNav?.focus();
+    }
   };
 
   setHeaderState();
@@ -31,12 +35,21 @@
     closeNav.addEventListener("click", () => setNavOpen(false));
   }
 
+  navOverlay?.addEventListener("click", () => setNavOpen(false));
+
   document.querySelectorAll("[data-mobile-nav] a").forEach((link) => {
     link.addEventListener("click", () => setNavOpen(false));
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setNavOpen(false);
+  });
+
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll("[data-nav-link]").forEach((link) => {
+    if (link.getAttribute("href") === currentPage) {
+      link.setAttribute("aria-current", "page");
+    }
   });
 
   document.querySelectorAll("[data-accordion-button]").forEach((button) => {
@@ -102,5 +115,27 @@
       if (status) status.textContent = "Thanks. Your message is ready to send once the backend is connected.";
       contactForm.reset();
     });
+  }
+
+  const animatedItems = Array.from(document.querySelectorAll("[data-animate]"));
+  animatedItems.forEach((item, index) => {
+    item.style.setProperty("--stagger-index", String(index % 6));
+  });
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.16 }
+    );
+
+    animatedItems.forEach((item) => observer.observe(item));
+  } else {
+    animatedItems.forEach((item) => item.classList.add("is-visible"));
   }
 })();
