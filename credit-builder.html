@@ -28,6 +28,7 @@
     }
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="css/custom.css">
 </head>
 <body class="bg-white text-gray-800 antialiased">
@@ -80,16 +81,79 @@
     </div>
   </header>
   <main id="main">
-    <section data-animate class="brand-shell overflow-hidden px-5 pb-14 pt-32 lg:px-8 lg:pt-36">
+    <section data-animate class="brand-shell px-5 pb-16 pt-32 lg:px-8 lg:pt-36">
       <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
-        <div><p class="section-kicker">Credit Builder</p><h1 class="mt-5 max-w-4xl text-5xl font-extrabold tracking-tight text-navy lg:text-7xl">Turn bill discipline into a visible habit.</h1><p class="mt-6 max-w-2xl text-lg leading-8 text-gray-700">Credit Builder is a planned Splitano tier for eligible customers who want on-time repayments to support a stronger financial profile.</p><a class="btn-primary mt-8" href="contact.html">Get Started</a></div>
-        <div class="relative"><div class="hero-orb"></div><div class="relative rounded-[2rem] bg-navy p-5 shadow-2xl shadow-navy/25"><div class="bill-card rounded-[1.5rem] p-6"><p class="text-sm font-extrabold text-skyblue">Splitano flow</p><div class="mt-5 grid gap-3"><div class="rounded-2xl bg-white p-4 font-bold text-navy">Split eligible bills</div><div class="rounded-2xl bg-white p-4 font-bold text-navy">Repay on schedule</div><div class="rounded-2xl bg-white p-4 font-bold text-navy">Track progress</div><div class="rounded-2xl bg-white p-4 font-bold text-navy">Build confidence</div></div></div></div></div>
+        <div>
+          <p class="section-kicker">Credit Builder</p>
+          <h1 class="mt-5 max-w-4xl text-5xl font-extrabold tracking-tight text-navy lg:text-7xl">Make on-time bill repayment feel measurable.</h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-gray-700">Credit Builder helps eligible Splitano customers make repayment habits easier to track with reminders, status, and progress visibility.</p>
+          <a class="btn-primary mt-8" href="#credit-projection">Project progress</a>
+        </div>
+        <div class="interactive-panel p-6">
+          <div class="rounded-3xl bg-navy p-6 text-white">
+            <span class="icon-badge dark"><i data-lucide="trending-up"></i></span>
+            <p class="mt-5 text-paleblue">Repayment habit score</p>
+            <p class="mt-2 text-6xl font-extrabold">742</p>
+            <div class="mt-5 h-3 overflow-hidden rounded-full bg-white/10"><div class="h-full w-3/4 rounded-full bg-gold"></div></div>
+          </div>
+          <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+            <div class="rounded-2xl bg-paleblue p-4"><p class="text-2xl font-extrabold text-navy">4</p><p class="text-sm text-gray-600">paid plans</p></div>
+            <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-2xl font-extrabold text-navy">0</p><p class="text-sm text-gray-600">missed</p></div>
+            <div class="rounded-2xl bg-paleblue p-4"><p class="text-2xl font-extrabold text-navy">92%</p><p class="text-sm text-gray-600">visibility</p></div>
+          </div>
+        </div>
       </div>
     </section>
-    <section data-animate class="section-pad bg-white px-5 lg:px-8"><div class="mx-auto max-w-7xl"><p class="section-kicker">Process</p><h2 class="mt-4 max-w-3xl text-4xl font-extrabold text-navy">Clear steps, visible decisions, no mystery handoff.</h2><div class="steps-line mt-8 grid gap-5 md:grid-cols-4"><article class="lift-card bg-paleblue p-6"><span class="text-3xl font-extrabold text-skyblue">01</span><h2 class="mt-4 text-xl font-extrabold text-navy">Split eligible bills</h2><p class="mt-3 leading-7 text-gray-600">The experience starts with clear bill details and plain-language expectations.</p></article><article class="lift-card bg-white p-6"><span class="text-3xl font-extrabold text-skyblue">02</span><h2 class="mt-4 text-xl font-extrabold text-navy">Repay on schedule</h2><p class="mt-3 leading-7 text-gray-600">Customers see the repayment impact before anything is confirmed.</p></article><article class="lift-card bg-paleblue p-6"><span class="text-3xl font-extrabold text-skyblue">03</span><h2 class="mt-4 text-xl font-extrabold text-navy">Track progress</h2><p class="mt-3 leading-7 text-gray-600">The provider payment remains the center of the product flow.</p></article><article class="lift-card bg-white p-6"><span class="text-3xl font-extrabold text-skyblue">04</span><h2 class="mt-4 text-xl font-extrabold text-navy">Build confidence</h2><p class="mt-3 leading-7 text-gray-600">The repayment path is simple, visible, and built for real households.</p></article></div></div></section>
-    <section data-animate class="section-pad bg-paleblue px-5 lg:px-8"><div class="mx-auto grid max-w-7xl gap-5 md:grid-cols-3"><article class="lift-card bg-white p-7"><h2 class="text-2xl font-extrabold text-navy">Designed around bills</h2><p class="mt-4 leading-7 text-gray-700">Splitano keeps the focus on essentials, not open-ended spending.</p></article><article class="lift-card bg-white p-7"><h2 class="text-2xl font-extrabold text-navy">Clear before commit</h2><p class="mt-4 leading-7 text-gray-700">Schedules, amounts, and customer obligations are visible before approval.</p></article><article class="lift-card bg-white p-7"><h2 class="text-2xl font-extrabold text-navy">Built to scale</h2><p class="mt-4 leading-7 text-gray-700">The structure maps cleanly to future Django views, forms, and includes.</p></article></div></section>
-    <section data-animate class="section-pad navy-gradient px-5 text-white lg:px-8"><div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center"><div><p class="section-kicker text-paleblue">Credit Builder</p><h2 class="mt-4 text-4xl font-extrabold">Good repayment habits should be easy to see.</h2></div><p class="text-lg leading-8 text-paleblue">Credit Builder turns routine bill repayment into a clear habit loop with reminders, status, and eligibility notes.</p></div></section>
-    <section data-animate class="section-pad bg-white px-5 lg:px-8"><div class="mx-auto max-w-7xl"><p class="section-kicker">Credit Builder details</p><h2 class="mt-4 max-w-3xl text-4xl font-extrabold text-navy">A habit layer for customers who repay consistently.</h2><div class="mt-8 grid gap-5 md:grid-cols-3"><article class="lift-card bg-paleblue p-7"><h3 class="text-2xl font-extrabold text-navy">Repayment streaks</h3><p class="mt-4 leading-7 text-gray-700">Show consecutive on-time repayments so progress feels visible and motivating.</p></article><article class="lift-card bg-white p-7"><h3 class="text-2xl font-extrabold text-navy">Eligibility notes</h3><p class="mt-4 leading-7 text-gray-700">Make it clear that Credit Builder access may depend on account status and repayment history.</p></article><article class="lift-card bg-paleblue p-7"><h3 class="text-2xl font-extrabold text-navy">Progress summaries</h3><p class="mt-4 leading-7 text-gray-700">A monthly snapshot can show paid installments, upcoming dates, and plan status.</p></article></div></div></section>    <section data-animate class="bg-white px-5 py-14 text-center lg:px-8"><h2 class="text-4xl font-extrabold text-navy">Ready for the next bill?</h2><p class="mx-auto mt-4 max-w-2xl leading-7 text-gray-600">Start with the provider, amount, and due date. Splitano keeps the rest clear.</p><a class="btn-gold mt-8" href="contact.html">Contact Splitano</a></section>
+    <section data-animate class="section-pad bg-white px-5 lg:px-8">
+      <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.75fr_1fr] lg:items-center">
+        <div><p class="section-kicker">What it is</p><h2 class="mt-4 text-4xl font-extrabold text-navy">A structured habit layer, not a vague promise.</h2></div>
+        <p class="text-lg leading-8 text-gray-700">The feature is designed to help customers understand how consistently paying Splitano installments on time could support better financial behavior. Any real credit impact would depend on final product terms, reporting rules, and customer eligibility.</p>
+      </div>
+    </section>
+    <section id="credit-projection" data-animate class="section-pad bg-paleblue px-5 lg:px-8">
+      <div data-credit-projection class="interactive-panel mx-auto max-w-5xl p-6 md:p-10">
+        <div class="grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center">
+          <div>
+            <p class="section-kicker">Projection tool</p>
+            <h2 class="mt-4 text-4xl font-extrabold text-navy">Choose an on-time repayment window.</h2>
+            <p class="mt-4 leading-8 text-gray-700">Use the slider to see how consistent repayment behavior can build a clearer planning rhythm over time.</p>
+          </div>
+          <div class="rounded-3xl bg-white p-6 shadow-xl shadow-navy/10">
+            <div class="flex items-end justify-between gap-4">
+              <div><p class="font-extrabold text-gray-600" data-credit-months>6 months</p><p class="text-6xl font-extrabold text-navy"><span data-credit-movement>+28</span><span class="text-xl text-gray-500"> pts</span></p></div>
+              <span class="icon-badge gold"><i data-lucide="gauge"></i></span>
+            </div>
+            <input data-credit-range class="mt-6 w-full accent-skyblue" type="range" min="3" max="12" step="3" value="6" aria-label="Months of on-time repayments">
+            <div class="mt-5 h-4 overflow-hidden rounded-full bg-paleblue"><div data-credit-bar class="h-full rounded-full bg-skyblue transition-all duration-300"></div></div>
+            <p class="mt-4 leading-7 text-gray-700" data-credit-note></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section data-animate class="section-pad bg-white px-5 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <p class="section-kicker">Compare paths</p>
+        <h2 class="mt-4 max-w-3xl text-4xl font-extrabold text-navy">Credit Builder adds visibility to the same repayment moment.</h2>
+        <div class="comparison-table mt-8 bg-white">
+          <div class="bg-navy text-white"><div class="p-5 font-extrabold">Capability</div><div class="p-5 font-extrabold">Without Credit Builder</div><div class="p-5 font-extrabold">With Credit Builder</div></div>
+          <div class="border-t border-gray-100"><div class="p-5 font-bold text-navy">Repayment reminders</div><div class="p-5 text-gray-600">Basic schedule view</div><div class="p-5 text-gray-700">Habit-focused reminders and status</div></div>
+          <div class="border-t border-gray-100 bg-paleblue"><div class="p-5 font-bold text-navy">Progress history</div><div class="p-5 text-gray-600">Plan-by-plan records</div><div class="p-5 text-gray-700">Longer on-time streak visibility</div></div>
+          <div class="border-t border-gray-100"><div class="p-5 font-bold text-navy">Eligibility feedback</div><div class="p-5 text-gray-600">General account state</div><div class="p-5 text-gray-700">Clearer notes tied to repayment behavior</div></div>
+        </div>
+      </div>
+    </section>
+    <section data-animate class="navy-gradient px-5 py-16 text-white lg:px-8">
+      <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center">
+        <div><p class="section-kicker text-paleblue">Eligibility</p><h2 class="mt-4 text-4xl font-extrabold">Access should be earned, visible, and explained.</h2></div>
+        <ul class="grid gap-4 text-paleblue">
+          <li class="flex gap-3"><i data-lucide="check-circle"></i><span>Account must be in good standing.</span></li>
+          <li class="flex gap-3"><i data-lucide="check-circle"></i><span>Bill plans and repayment history may be reviewed.</span></li>
+          <li class="flex gap-3"><i data-lucide="check-circle"></i><span>Any reporting or score impact depends on final product terms.</span></li>
+        </ul>
+      </div>
+    </section>
+    <section data-animate class="section-pad bg-paleblue px-5 lg:px-8"><div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3"><article class="feature-card"><span class="icon-badge"><i data-lucide="bell-ring"></i></span><h3 class="mt-5 text-2xl font-extrabold text-navy">Reminder cadence</h3><p class="mt-3 leading-7 text-gray-700">Keep upcoming repayments visible before they become stressful.</p></article><article class="feature-card"><span class="icon-badge gold"><i data-lucide="flame-kindling"></i></span><h3 class="mt-5 text-2xl font-extrabold text-navy">Streak visibility</h3><p class="mt-3 leading-7 text-gray-700">See consecutive on-time repayments as a simple behavior signal.</p></article><article class="feature-card"><span class="icon-badge"><i data-lucide="clipboard-list"></i></span><h3 class="mt-5 text-2xl font-extrabold text-navy">Monthly summary</h3><p class="mt-3 leading-7 text-gray-700">Review completed installments, next due dates, and active plan status.</p></article></div></section>
+    <section data-animate class="bg-white px-5 py-14 text-center lg:px-8"><h2 class="text-4xl font-extrabold text-navy">Build the habit before the next due date.</h2><p class="mx-auto mt-4 max-w-2xl leading-7 text-gray-600">Ask about Credit Builder access and eligibility when you contact Splitano.</p><a class="btn-gold mt-8" href="contact.html">Ask about Credit Builder</a></section>
   </main>
   <footer class="bg-navy px-5 py-14 text-white lg:px-8">
     <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
@@ -106,7 +170,7 @@
         </div>
       </div>
       <div class="border-l border-white/10 pl-0 md:pl-6">
-        <h2 class="text-sm font-extrabold uppercase tracking-[0.2em] text-gold">Product</h2>
+        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="blocks"></i>Product</h2>
         <div class="mt-5 grid gap-3 text-paleblue">
           <a href="how-it-works.html">How It Works</a>
           <a href="credit-builder.html">Credit Builder</a>
@@ -114,16 +178,15 @@
         </div>
       </div>
       <div class="border-l border-white/10 pl-0 md:pl-6">
-        <h2 class="text-sm font-extrabold uppercase tracking-[0.2em] text-gold">Company</h2>
+        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="building-2"></i>Company</h2>
         <div class="mt-5 grid gap-3 text-paleblue">
           <a href="about.html">About Us</a>
           <a href="business.html">Business</a>
           <a href="contact.html">Contact</a>
-          <a href="contact.html">Careers</a>
         </div>
       </div>
       <div class="border-l border-white/10 pl-0 md:pl-6">
-        <h2 class="text-sm font-extrabold uppercase tracking-[0.2em] text-gold">Legal</h2>
+        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="scale"></i>Legal</h2>
         <div class="mt-5 grid gap-3 text-paleblue">
           <a href="terms.html">Terms of Service</a>
           <a href="privacy.html">Privacy Policy</a>

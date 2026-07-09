@@ -28,6 +28,7 @@
     }
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="css/custom.css">
 </head>
 <body class="bg-white text-gray-800 antialiased">
@@ -80,62 +81,17 @@
     </div>
   </header>
   <main id="main">
-    <section data-animate class="brand-shell overflow-hidden px-5 pb-16 pt-32 lg:px-8 lg:pb-20 lg:pt-36">
-      <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_0.95fr]">
-        <div>
-          <p class="section-kicker">Pay now, split later</p>
-          <h1 class="mt-5 max-w-4xl text-5xl font-extrabold tracking-tight text-navy sm:text-6xl lg:text-7xl">Keep essential bills paid without breaking the month.</h1>
-          <p class="mt-6 max-w-2xl text-lg leading-8 text-gray-700">Upload a household bill, Splitano pays the provider upfront, and you repay in four interest-free installments with every date and amount shown before you commit.</p>
-          <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-            <a class="btn-primary" href="contact.html">Start with a bill</a>
-            <a class="rounded-full bg-white px-8 py-4 text-center font-extrabold text-navy shadow-lg shadow-navy/5 ring-1 ring-navy/10 transition hover:-translate-y-0.5 hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="how-it-works.html">See the flow</a>
-          </div>
-        </div>
-        <div class="relative">
-          <div class="hero-orb"></div>
-          <div class="relative rounded-[2rem] bg-navy p-5 shadow-2xl shadow-navy/25">
-            <div class="bill-card rounded-[1.5rem] p-6">
-              <div class="flex items-start justify-between gap-4">
-                <div><p class="text-sm font-extrabold text-skyblue">Electricity provider</p><p class="mt-1 text-3xl font-extrabold text-navy">$384.20</p></div>
-                <span class="rounded-full bg-gold px-3 py-1 text-xs font-extrabold text-navy">Due Friday</span>
-              </div>
-              <div class="mt-6 rounded-3xl bg-white p-4 shadow-lg shadow-navy/5 ring-1 ring-navy/10">
-                <div class="flex items-center justify-between"><span class="font-bold text-navy">Provider payment</span><span class="font-extrabold text-skyblue">Paid today</span></div>
-                <div class="mt-3 h-2 rounded-full bg-paleblue"><div class="h-2 w-full rounded-full bg-skyblue"></div></div>
-              </div>
-              <div class="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                <div class="rounded-2xl bg-white p-3 text-center shadow-md shadow-navy/5"><p class="text-xs text-gray-500">Today</p><p class="font-extrabold text-navy">$96</p></div>
-                <div class="rounded-2xl bg-white p-3 text-center shadow-md shadow-navy/5"><p class="text-xs text-gray-500">2 wks</p><p class="font-extrabold text-navy">$96</p></div>
-                <div class="rounded-2xl bg-white p-3 text-center shadow-md shadow-navy/5"><p class="text-xs text-gray-500">4 wks</p><p class="font-extrabold text-navy">$96</p></div>
-                <div class="rounded-2xl bg-white p-3 text-center shadow-md shadow-navy/5"><p class="text-xs text-gray-500">6 wks</p><p class="font-extrabold text-navy">$96</p></div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section data-animate class="brand-shell px-5 pb-16 pt-32 lg:px-8 lg:pt-36">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+        <div><p class="section-kicker">Pay now, split later</p><h1 class="mt-5 max-w-4xl text-5xl font-extrabold tracking-tight text-navy sm:text-6xl lg:text-7xl">One urgent bill. Four clear repayments.</h1><p class="mt-6 max-w-2xl text-lg leading-8 text-gray-700">Splitano is a bill-first repayment product: upload an eligible bill, see the terms, let the provider get paid, and repay in predictable installments.</p><div class="mt-8 flex flex-col gap-4 sm:flex-row"><a class="btn-primary" href="contact.html">Start with a bill</a><a class="rounded-full bg-white px-8 py-4 text-center font-extrabold text-navy shadow-lg shadow-navy/5 ring-1 ring-navy/10 transition hover:-translate-y-0.5 hover:text-skyblue" href="how-it-works.html">Use the calculator</a></div></div>
+        <div class="interactive-panel p-6"><div class="grid gap-4 md:grid-cols-[1fr_0.85fr]"><div class="rounded-3xl bg-navy p-6 text-white"><p class="text-paleblue">Bill due</p><p class="mt-2 text-5xl font-extrabold">$384</p><p class="mt-5 rounded-full bg-gold px-4 py-2 text-center font-extrabold text-navy">Provider paid first</p></div><div class="grid gap-3"><div class="rounded-2xl bg-paleblue p-4"><p class="font-extrabold text-navy">$96 today</p></div><div class="rounded-2xl bg-white p-4 shadow-lg"><p class="font-extrabold text-navy">$96 in 2 weeks</p></div><div class="rounded-2xl bg-white p-4 shadow-lg"><p class="font-extrabold text-navy">$96 in 4 weeks</p></div><div class="rounded-2xl bg-paleblue p-4"><p class="font-extrabold text-navy">$96 in 6 weeks</p></div></div></div></div>
       </div>
     </section>
-    <section data-animate class="border-y border-navy/10 bg-white px-5 py-6 lg:px-8" aria-label="Splitano trust indicators"><div class="mx-auto grid max-w-7xl gap-4 text-center md:grid-cols-3"><p class="font-extrabold text-navy">10,000+ placeholder bills split</p><p class="font-extrabold text-navy">Four clear repayments</p><p class="font-extrabold text-navy">Bill-first, not cash-first</p></div></section>
-    <section data-animate class="section-pad bg-white px-5 lg:px-8"><div class="mx-auto max-w-7xl"><p class="section-kicker">How it works</p><h2 class="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight text-navy">A direct path from uploaded bill to paid provider.</h2><div class="steps-line mt-10 grid gap-5 md:grid-cols-4"><article class="lift-card bg-paleblue p-6"><span class="text-3xl font-extrabold text-skyblue">01</span><h3 class="mt-4 text-xl font-extrabold text-navy">Upload</h3><p class="mt-3 leading-7 text-gray-600">Send the bill with provider, amount, and due date visible.</p></article><article class="lift-card bg-white p-6"><span class="text-3xl font-extrabold text-skyblue">02</span><h3 class="mt-4 text-xl font-extrabold text-navy">Review</h3><p class="mt-3 leading-7 text-gray-600">See eligibility and your repayment schedule before approval.</p></article><article class="lift-card bg-paleblue p-6"><span class="text-3xl font-extrabold text-skyblue">03</span><h3 class="mt-4 text-xl font-extrabold text-navy">We pay</h3><p class="mt-3 leading-7 text-gray-600">Splitano pays the biller directly so the due date is handled.</p></article><article class="lift-card bg-white p-6"><span class="text-3xl font-extrabold text-skyblue">04</span><h3 class="mt-4 text-xl font-extrabold text-navy">You split</h3><p class="mt-3 leading-7 text-gray-600">Repay Splitano in four interest-free installments.</p></article></div></div></section>
-    <section data-animate class="section-pad bg-paleblue px-5 lg:px-8"><div class="mx-auto max-w-7xl"><p class="section-kicker">Bill categories</p><h2 class="mt-4 text-4xl font-extrabold tracking-tight text-navy">Built for recurring essentials.</h2><div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"><div class="lift-card bg-white p-6 font-bold text-navy"><span class="mr-2 text-skyblue">01</span>Electricity</div><div class="lift-card bg-white p-6 font-bold text-navy"><span class="mr-2 text-skyblue">02</span>Internet</div><div class="lift-card bg-white p-6 font-bold text-navy"><span class="mr-2 text-skyblue">03</span>Phone</div><div class="lift-card bg-white p-6 font-bold text-navy"><span class="mr-2 text-skyblue">04</span>Rent</div><div class="lift-card bg-white p-6 font-bold text-navy"><span class="mr-2 text-skyblue">05</span>Water</div><div class="lift-card bg-white p-6 font-bold text-navy"><span class="mr-2 text-skyblue">06</span>Insurance</div><div class="lift-card bg-white p-6 font-bold text-navy"><span class="mr-2 text-skyblue">07</span>Rates and fees</div><div class="lift-card bg-white p-6 font-bold text-navy"><span class="mr-2 text-skyblue">08</span>Subscriptions</div></div></div></section>
-    <section data-animate class="section-pad navy-gradient px-5 text-white lg:px-8"><div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3"><article class="rounded-3xl bg-white/10 p-8 shadow-lg"><h3 class="text-2xl font-extrabold">No interest</h3><p class="mt-4 leading-7 text-paleblue">Eligible bills are split into four scheduled repayments without interest charges.</p></article><article class="rounded-3xl bg-white/10 p-8 shadow-lg"><h3 class="text-2xl font-extrabold">No hard credit check impact</h3><p class="mt-4 leading-7 text-paleblue">The flow avoids unnecessary friction while still reviewing affordability.</p></article><article class="rounded-3xl bg-white/10 p-8 shadow-lg"><h3 class="text-2xl font-extrabold">Direct bill payment</h3><p class="mt-4 leading-7 text-paleblue">Funds go to the biller, keeping the product focused on due dates and essentials.</p></article></div></section>
-    <section data-animate class="section-pad bg-paleblue px-5 lg:px-8"><div class="mx-auto max-w-7xl"><p class="section-kicker">Customer notes</p><h2 class="mt-4 text-4xl font-extrabold text-navy">Realistic relief, not magic money.</h2><div class="mt-8 grid gap-5 md:grid-cols-3"><blockquote class="lift-card bg-white p-7"><p class="leading-7 text-gray-700">"My internet bill landed right before payday. Splitting it meant work stayed online and the repayment plan was clear."</p><footer class="mt-5 font-extrabold text-navy">Maya R.</footer></blockquote><blockquote class="lift-card bg-white p-7"><p class="leading-7 text-gray-700">"I liked that the money went to the biller, not into my account. It felt focused and responsible."</p><footer class="mt-5 font-extrabold text-navy">Andre L.</footer></blockquote><blockquote class="lift-card bg-white p-7"><p class="leading-7 text-gray-700">"The four-part schedule made a large utility bill feel manageable without hiding the total cost."</p><footer class="mt-5 font-extrabold text-navy">Priya S.</footer></blockquote></div></div></section>
-    <section data-animate class="section-pad bg-white px-5 lg:px-8">
-      <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <div>
-          <p class="section-kicker">Plan visibility</p>
-          <h2 class="mt-4 text-4xl font-extrabold text-navy">Know the bill, the due date, and every repayment before you move.</h2>
-          <p class="mt-5 leading-8 text-gray-700">Splitano is designed to slow the stressful part down. Before a customer commits, the page should make the amount, provider, installment timing, and repayment total feel obvious.</p>
-        </div>
-        <div class="grid gap-4 sm:grid-cols-2">
-          <article class="lift-card bg-paleblue p-6"><h3 class="text-xl font-extrabold text-navy">Due-date focus</h3><p class="mt-3 leading-7 text-gray-600">The product centers on getting the eligible provider paid before pressure builds.</p></article>
-          <article class="lift-card bg-white p-6"><h3 class="text-xl font-extrabold text-navy">Installment preview</h3><p class="mt-3 leading-7 text-gray-600">Customers see four repayment dates and amounts before confirming.</p></article>
-          <article class="lift-card bg-white p-6"><h3 class="text-xl font-extrabold text-navy">Bill-specific review</h3><p class="mt-3 leading-7 text-gray-600">Provider, due date, and bill type matter because this is not a general spending card.</p></article>
-          <article class="lift-card bg-paleblue p-6"><h3 class="text-xl font-extrabold text-navy">Reminder rhythm</h3><p class="mt-3 leading-7 text-gray-600">Repayment reminders help make the next installment predictable, not surprising.</p></article>
-        </div>
-      </div>
-    </section>
-    <section data-animate class="section-pad bg-white px-5 lg:px-8"><div class="mx-auto max-w-3xl"><p class="section-kicker">Questions</p><h2 class="mt-4 text-4xl font-extrabold text-navy">Good things to know before you split.</h2><div class="mt-8 space-y-4"><div class="lift-card bg-white p-5"><button data-accordion-button class="flex w-full items-center justify-between text-left font-extrabold text-navy" aria-expanded="false" aria-controls="faq-1">What bills can I split?<span data-accordion-icon class="text-2xl transition">+</span></button><div id="faq-1" class="pt-4 leading-7 text-gray-600" hidden>Common household and recurring bills are the best fit, including utilities, phone, internet, insurance, and similar provider invoices.</div></div><div class="lift-card bg-white p-5"><button data-accordion-button class="flex w-full items-center justify-between text-left font-extrabold text-navy" aria-expanded="false" aria-controls="faq-2">Does Splitano charge interest?<span data-accordion-icon class="text-2xl transition">+</span></button><div id="faq-2" class="pt-4 leading-7 text-gray-600" hidden>No interest is charged on eligible four-installment plans. Any fees would be shown clearly before you agree.</div></div><div class="lift-card bg-white p-5"><button data-accordion-button class="flex w-full items-center justify-between text-left font-extrabold text-navy" aria-expanded="false" aria-controls="faq-3">Who receives the payment?<span data-accordion-icon class="text-2xl transition">+</span></button><div id="faq-3" class="pt-4 leading-7 text-gray-600" hidden>Splitano pays the approved biller directly. You repay Splitano according to your installment schedule.</div></div></div></div></section>
-    <section data-animate class="navy-gradient px-5 py-16 text-white lg:px-8"><div class="mx-auto max-w-7xl text-center"><h2 class="text-4xl font-extrabold">Ready to breathe easier?</h2><p class="mx-auto mt-4 max-w-2xl leading-7 text-paleblue">Bring the bill. Splitano helps turn one urgent due date into four manageable repayments.</p><a class="btn-gold mt-8" href="contact.html">Contact Splitano</a></div></section>
+    <section data-animate class="section-pad bg-white px-5 lg:px-8"><div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-3"><article class="feature-card"><span class="icon-badge"><i data-lucide="receipt-text"></i></span><h2 class="mt-5 text-2xl font-extrabold text-navy">For bill relief</h2><p class="mt-3 leading-7 text-gray-700">See the full flow and live installment calculator.</p><a class="mt-4 inline-flex font-extrabold text-skyblue" href="how-it-works.html">Explore how it works</a></article><article class="feature-card"><span class="icon-badge gold"><i data-lucide="trending-up"></i></span><h2 class="mt-5 text-2xl font-extrabold text-navy">For repayment habits</h2><p class="mt-3 leading-7 text-gray-700">Learn how Credit Builder could make consistency visible.</p><a class="mt-4 inline-flex font-extrabold text-skyblue" href="credit-builder.html">View Credit Builder</a></article><article class="feature-card"><span class="icon-badge"><i data-lucide="scissors"></i></span><h2 class="mt-5 text-2xl font-extrabold text-navy">For lower bills</h2><p class="mt-3 leading-7 text-gray-700">Compare recurring costs and category savings opportunities.</p><a class="mt-4 inline-flex font-extrabold text-skyblue" href="bill-savings.html">See Bill Savings</a></article></div></section>
+    <section data-animate class="navy-gradient px-5 py-16 text-white lg:px-8"><div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center"><div><p class="section-kicker text-paleblue">Splitano promise</p><h2 class="mt-4 text-5xl font-extrabold">Bill-first, not cash-first.</h2></div><div class="grid gap-4 text-paleblue"><p class="flex gap-3"><i data-lucide="landmark"></i><span>Provider payment stays central.</span></p><p class="flex gap-3"><i data-lucide="calendar-check"></i><span>Installment dates are shown before commitment.</span></p><p class="flex gap-3"><i data-lucide="shield-check"></i><span>Eligibility and any fees must be clear before acceptance.</span></p></div></div></section>
+    <section data-animate class="section-pad bg-paleblue px-5 lg:px-8"><div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center"><div><p class="section-kicker">Who it serves</p><h2 class="mt-4 text-4xl font-extrabold text-navy">Households and billers both need less chaos around due dates.</h2><p class="mt-5 leading-8 text-gray-700">Consumers need a calm way to manage essential expenses. Businesses need a structured way to offer flexibility without creating messy one-off collections workflows.</p></div><div class="grid gap-4"><a class="feature-card block" href="about.html"><span class="icon-badge"><i data-lucide="heart-handshake"></i></span><h3 class="mt-4 text-2xl font-extrabold text-navy">Read the Splitano story</h3></a><a class="feature-card block" href="business.html"><span class="icon-badge gold"><i data-lucide="briefcase-business"></i></span><h3 class="mt-4 text-2xl font-extrabold text-navy">See merchant tools</h3></a></div></div></section>
+    <section data-animate class="section-pad bg-white px-5 lg:px-8"><div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center"><div><p class="section-kicker">Bill readiness</p><h2 class="mt-4 text-4xl font-extrabold text-navy">What to have ready before you start.</h2><p class="mt-5 leading-8 text-gray-700">Splitano works best when the bill details are clear enough to review quickly and responsibly.</p></div><div class="grid gap-4 sm:grid-cols-2"><article class="lift-card bg-paleblue p-6"><span class="icon-badge"><i data-lucide="building-2"></i></span><h3 class="mt-4 text-xl font-extrabold text-navy">Provider name</h3><p class="mt-2 text-gray-600">The company or biller that needs to be paid.</p></article><article class="lift-card bg-white p-6"><span class="icon-badge gold"><i data-lucide="calendar-days"></i></span><h3 class="mt-4 text-xl font-extrabold text-navy">Due date</h3><p class="mt-2 text-gray-600">The exact date pressure starts to build.</p></article><article class="lift-card bg-white p-6"><span class="icon-badge"><i data-lucide="badge-dollar-sign"></i></span><h3 class="mt-4 text-xl font-extrabold text-navy">Amount due</h3><p class="mt-2 text-gray-600">The total bill amount before any repayment plan.</p></article><article class="lift-card bg-paleblue p-6"><span class="icon-badge gold"><i data-lucide="file-key-2"></i></span><h3 class="mt-4 text-xl font-extrabold text-navy">Account reference</h3><p class="mt-2 text-gray-600">Any number or note the provider needs to match payment.</p></article></div></div></section>
+    <section data-animate class="bg-white px-5 py-14 text-center lg:px-8"><h2 class="text-4xl font-extrabold text-navy">Bring the bill. Keep the plan visible.</h2><p class="mx-auto mt-4 max-w-2xl leading-7 text-gray-600">Start with a provider, amount, and due date. Splitano keeps the rest clear.</p><a class="btn-gold mt-8" href="contact.html">Contact Splitano</a></section>
   </main>
   <footer class="bg-navy px-5 py-14 text-white lg:px-8">
     <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
@@ -152,7 +108,7 @@
         </div>
       </div>
       <div class="border-l border-white/10 pl-0 md:pl-6">
-        <h2 class="text-sm font-extrabold uppercase tracking-[0.2em] text-gold">Product</h2>
+        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="blocks"></i>Product</h2>
         <div class="mt-5 grid gap-3 text-paleblue">
           <a href="how-it-works.html">How It Works</a>
           <a href="credit-builder.html">Credit Builder</a>
@@ -160,16 +116,15 @@
         </div>
       </div>
       <div class="border-l border-white/10 pl-0 md:pl-6">
-        <h2 class="text-sm font-extrabold uppercase tracking-[0.2em] text-gold">Company</h2>
+        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="building-2"></i>Company</h2>
         <div class="mt-5 grid gap-3 text-paleblue">
           <a href="about.html">About Us</a>
           <a href="business.html">Business</a>
           <a href="contact.html">Contact</a>
-          <a href="contact.html">Careers</a>
         </div>
       </div>
       <div class="border-l border-white/10 pl-0 md:pl-6">
-        <h2 class="text-sm font-extrabold uppercase tracking-[0.2em] text-gold">Legal</h2>
+        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="scale"></i>Legal</h2>
         <div class="mt-5 grid gap-3 text-paleblue">
           <a href="terms.html">Terms of Service</a>
           <a href="privacy.html">Privacy Policy</a>
