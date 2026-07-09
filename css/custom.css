@@ -775,8 +775,71 @@ footer [data-lucide] {
 }
 
 @media (max-width: 767px) {
+  .comparison-table {
+    overflow: visible;
+    border-radius: 0;
+    background: transparent !important;
+    box-shadow: none;
+  }
+
   .comparison-table > div {
     grid-template-columns: 1fr;
+  }
+
+  .comparison-table > div:first-child {
+    display: none;
+  }
+
+  .comparison-table > div:not(:first-child) {
+    display: block;
+    overflow: hidden;
+    margin-top: 1rem;
+    border: 1px solid #f3f4f6;
+    border-radius: 1.5rem;
+    background: #ffffff !important;
+    box-shadow: 0 18px 44px rgba(11, 42, 74, 0.1);
+  }
+
+  .comparison-table > div:not(:first-child) > div {
+    padding: 1rem 1.25rem;
+  }
+
+  .comparison-table > div:not(:first-child) > div:first-child {
+    background: #0b2a4a;
+    color: #ffffff !important;
+    font-size: 1.05rem;
+  }
+
+  .comparison-table > div:not(:first-child) > div:nth-child(2),
+  .comparison-table > div:not(:first-child) > div:nth-child(3) {
+    color: #374151 !important;
+  }
+
+  .comparison-table > div:not(:first-child) > div:nth-child(2)::before,
+  .comparison-table > div:not(:first-child) > div:nth-child(3)::before {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: #1e6feb;
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .comparison-table-workflow > div:not(:first-child) > div:nth-child(2)::before {
+    content: "Customer sees";
+  }
+
+  .comparison-table-workflow > div:not(:first-child) > div:nth-child(3)::before {
+    content: "Splitano handles";
+  }
+
+  .comparison-table-credit > div:not(:first-child) > div:nth-child(2)::before {
+    content: "Without Credit Builder";
+  }
+
+  .comparison-table-credit > div:not(:first-child) > div:nth-child(3)::before {
+    content: "With Credit Builder";
   }
 
   .timeline-rail::before {
