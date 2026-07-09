@@ -242,6 +242,34 @@
     });
   }
 
+  const billerDirectory = document.querySelector("[data-biller-directory]");
+  if (billerDirectory) {
+    const search = billerDirectory.querySelector("[data-biller-search]");
+    const chips = Array.from(billerDirectory.querySelectorAll("[data-biller-filter]"));
+    const cards = Array.from(billerDirectory.querySelectorAll("[data-biller-card]"));
+    let activeCategory = "all";
+
+    const updateBillers = () => {
+      const query = (search?.value || "").trim().toLowerCase();
+      cards.forEach((card) => {
+        const matchesCategory = activeCategory === "all" || card.dataset.billerCategory === activeCategory;
+        const matchesQuery = !query || card.textContent.toLowerCase().includes(query);
+        card.hidden = !(matchesCategory && matchesQuery);
+      });
+    };
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        activeCategory = chip.dataset.billerFilter || "all";
+        chips.forEach((item) => item.setAttribute("aria-pressed", String(item === chip)));
+        updateBillers();
+      });
+    });
+
+    search?.addEventListener("input", updateBillers);
+    updateBillers();
+  }
+
   const animatedItems = Array.from(document.querySelectorAll("[data-animate]"));
   animatedItems.forEach((item, index) => {
     item.style.setProperty("--stagger-index", String(index % 6));

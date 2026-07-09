@@ -724,6 +724,116 @@ footer [data-lucide] {
   background: linear-gradient(90deg, #1e6feb, #ffc94a);
 }
 
+.biller-card {
+  position: relative;
+  display: grid;
+  min-height: 14rem;
+  grid-template-columns: auto 1fr;
+  align-content: start;
+  column-gap: 0.9rem;
+  overflow: hidden;
+  border: 1px solid rgba(30, 111, 235, 0.1);
+  border-radius: 1.75rem;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(255, 201, 74, 0.18), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+  padding: 1.5rem;
+  box-shadow: 0 24px 60px rgba(11, 42, 74, 0.12);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.biller-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 0.35rem;
+  background: linear-gradient(90deg, #1e6feb, #ffc94a);
+}
+
+.biller-card .icon-badge {
+  position: relative;
+  z-index: 1;
+  height: 3.25rem;
+  width: 3.25rem;
+}
+
+.biller-card p {
+  grid-column: 1 / -1;
+  position: relative;
+  z-index: 1;
+}
+
+.biller-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(30, 111, 235, 0.28);
+  box-shadow: 0 30px 76px rgba(11, 42, 74, 0.18);
+}
+
+.wordmark-badge {
+  display: inline-flex;
+  position: relative;
+  z-index: 1;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  align-self: start;
+  justify-self: start;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0b2a4a, #123a63);
+  color: #ffffff;
+  margin-top: 0 !important;
+  padding: 0.75rem 1.2rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  box-shadow: 0 14px 32px rgba(11, 42, 74, 0.18);
+}
+
+.biller-card::after {
+  content: attr(data-biller-category);
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.1rem;
+  border-radius: 999px;
+  background: #eaf2ff;
+  color: #1e6feb;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.filter-chip[aria-pressed="true"] {
+  background: #0b2a4a;
+  color: #ffffff !important;
+  box-shadow: 0 16px 34px rgba(11, 42, 74, 0.16);
+}
+
+.difference-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.8fr 0.8fr;
+}
+
+.check-mark,
+.x-mark {
+  display: inline-grid;
+  height: 2.5rem;
+  width: 2.5rem;
+  place-items: center;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.check-mark {
+  background: rgba(255, 201, 74, 0.24);
+  color: #0b2a4a;
+}
+
+.x-mark {
+  background: rgba(239, 68, 68, 0.1);
+  color: #b91c1c;
+}
+
 .flip-card {
   min-height: 15rem;
   perspective: 1000px;
@@ -840,6 +950,17 @@ footer [data-lucide] {
 
   .comparison-table-credit > div:not(:first-child) > div:nth-child(3)::before {
     content: "With Credit Builder";
+  }
+
+  .difference-row {
+    grid-template-columns: 1fr;
+  }
+
+  .difference-row > div:not(:first-child) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
   .timeline-rail::before {
