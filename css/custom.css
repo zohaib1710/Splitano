@@ -1,0 +1,269 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: #1f2937;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+.text-navy {
+  color: #0b2a4a !important;
+}
+
+.text-skyblue {
+  color: #1e6feb !important;
+}
+
+.text-paleblue {
+  color: #eaf2ff !important;
+}
+
+.text-gold {
+  color: #ffc94a !important;
+}
+
+.bg-navy {
+  background-color: #0b2a4a !important;
+}
+
+.bg-cardnavy {
+  background-color: #123a63 !important;
+}
+
+.bg-skyblue {
+  background-color: #1e6feb !important;
+}
+
+.bg-paleblue {
+  background-color: #eaf2ff !important;
+}
+
+.bg-gold {
+  background-color: #ffc94a !important;
+}
+
+.bg-gold\/40 {
+  background-color: rgba(255, 201, 74, 0.4) !important;
+}
+
+.border-navy\/10 {
+  border-color: rgba(11, 42, 74, 0.1) !important;
+}
+
+.ring-navy\/10 {
+  --tw-ring-color: rgba(11, 42, 74, 0.1) !important;
+}
+
+.ring-skyblue {
+  --tw-ring-color: #1e6feb !important;
+}
+
+.shadow-navy\/5 {
+  --tw-shadow-color: rgba(11, 42, 74, 0.05) !important;
+}
+
+.shadow-navy\/10 {
+  --tw-shadow-color: rgba(11, 42, 74, 0.1) !important;
+}
+
+.shadow-navy\/20 {
+  --tw-shadow-color: rgba(11, 42, 74, 0.2) !important;
+}
+
+.shadow-navy\/25 {
+  --tw-shadow-color: rgba(11, 42, 74, 0.25) !important;
+}
+
+.shadow-skyblue\/20 {
+  --tw-shadow-color: rgba(30, 111, 235, 0.2) !important;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 1rem;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 1rem;
+}
+
+.brand-shell {
+  background:
+    radial-gradient(circle at 12% 12%, rgba(30, 111, 235, 0.2), transparent 25%),
+    radial-gradient(circle at 88% 18%, rgba(255, 201, 74, 0.18), transparent 20%),
+    linear-gradient(135deg, #eaf2ff 0%, #ffffff 44%, #eaf2ff 100%);
+  overflow-x: hidden;
+}
+
+.brand-shell h1 {
+  font-size: clamp(2.85rem, 8vw, 4.6rem);
+  line-height: 0.98;
+  overflow-wrap: break-word;
+}
+
+.brand-shell .grid,
+.brand-shell .grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.brand-shell .mx-auto {
+  width: 100%;
+}
+
+.nav-open {
+  overflow: hidden;
+}
+
+.header-scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 16px 45px rgba(11, 42, 74, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+header nav {
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  [data-nav-toggle] {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-nav-toggle] {
+    display: none !important;
+  }
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1e6feb;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.section-kicker::before {
+  content: "";
+  width: 1.75rem;
+  height: 0.25rem;
+  border-radius: 999px;
+  background: #ffc94a;
+}
+
+.bill-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(234, 242, 255, 0.96)),
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(11, 42, 74, 0.035) 18px 19px);
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.bill-card *,
+.float-soft {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 639px) {
+  .brand-shell {
+    background-size: auto, auto, auto;
+  }
+
+  .brand-shell h1 {
+    font-size: clamp(2.25rem, 10vw, 2.75rem);
+  }
+
+  .brand-shell .rounded-\[2rem\] {
+    border-radius: 1.25rem;
+  }
+
+  .brand-shell > .mx-auto,
+  .brand-shell .reveal-card,
+  .brand-shell .relative,
+  .brand-shell .float-soft {
+    width: 100%;
+    max-width: 350px !important;
+  }
+
+  .brand-shell > .mx-auto {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .brand-shell a.rounded-full {
+    width: 100%;
+  }
+
+  header nav {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+  }
+
+  [data-nav-toggle] {
+    position: fixed;
+    left: 320px;
+    right: auto;
+    top: 1.1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  [data-nav-toggle] {
+    left: 300px;
+  }
+}
+
+@media (max-width: 340px) {
+  [data-nav-toggle] {
+    left: 260px;
+  }
+}
+
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(11, 42, 74, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 42, 74, 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.float-soft {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+.reveal-card {
+  animation: none;
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
