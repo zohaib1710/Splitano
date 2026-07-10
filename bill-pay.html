@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bill Pay | Splitano</title>
+  <meta name="description" content="Use Splitano Bill pay to send eligible bills for payment support, then choose a repayment path that fits the bill and the month ahead.">
+  <meta property="og:title" content="Bill Pay | Splitano">
+  <meta property="og:description" content="Use Splitano Bill pay to send eligible bills for payment support, then choose a repayment path that fits the bill and the month ahead.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/splitano-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0B2A4A',
+            skyblue: '#1E6FEB',
+            paleblue: '#EAF2FF',
+            gold: '#FFC94A',
+            cardnavy: '#123A63',
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="bg-white text-gray-800 antialiased">
+  <a class="skip-link rounded-full bg-gold px-4 py-2 font-bold text-navy" href="#main">Skip to content</a>
+  <header data-site-header class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8" aria-label="Primary navigation">
+      <a href="index.html" class="group flex items-center gap-3 rounded-full focus:outline-none focus:ring-4 focus:ring-gold/50">
+        <span class="relative grid h-12 w-12 place-items-center rounded-2xl bg-navy shadow-lg shadow-navy/20">
+          <img src="img/splitano-mark.svg" alt="Splitano logo" class="h-10 w-10">
+          <span class="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-gold ring-2 ring-white"></span>
+        </span>
+        <span class="text-2xl font-extrabold tracking-tight text-navy">Splitano<span class="text-gold">.</span></span>
+      </a>
+      <div class="hidden items-center gap-8 lg:flex">
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="how-it-works.html">How it works</a>
+        <div data-features-dropdown>
+          <button data-features-toggle class="inline-flex items-center gap-1 text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="features-menu">Features <i data-lucide="chevron-down" class="h-4 w-4"></i></button>
+          <div id="features-menu" data-features-menu aria-hidden="true" class="features-menu absolute left-1/2 top-full z-50 mt-4 w-[25rem] -translate-x-1/2 rounded-[1.5rem] border border-gray-100 bg-white p-3 text-navy shadow-2xl shadow-navy/20">
+            <a data-nav-link class="feature-menu-link" href="pay-in-4.html"><span class="icon-badge gold"><i data-lucide="calendar-days"></i></span><span><strong class="block text-sm">Pay bills in 4</strong><small class="mt-1 block text-gray-600">Split one bill into four clear repayments.</small></span></a>
+            <a data-nav-link class="feature-menu-link" href="bill-pay.html"><span class="icon-badge"><i data-lucide="receipt-text"></i></span><span><strong class="block text-sm">Bill pay</strong><small class="mt-1 block text-gray-600">Send eligible bills to Splitano for payment support.</small></span></a>
+          </div>
+        </div>
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="bill-savings.html">Bill Savings</a>
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="about.html">About us</a>
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="business.html">Business</a>
+      </div>
+      <div class="hidden items-center lg:flex">
+        <a class="btn-gold px-6 py-3 text-sm" href="contact.html">Get Started</a>
+      </div>
+      <button data-nav-toggle class="rounded-full border border-navy/10 bg-white/95 p-3 text-navy shadow-lg shadow-navy/10 focus:outline-none focus:ring-4 focus:ring-gold/40 lg:hidden" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation">
+        <span class="block h-0.5 w-6 bg-current"></span>
+        <span class="mt-1.5 block h-0.5 w-6 bg-current"></span>
+        <span class="mt-1.5 block h-0.5 w-6 bg-current"></span>
+      </button>
+    </nav>
+    <div data-nav-overlay aria-hidden="true" class="pointer-events-none fixed inset-0 z-40 bg-navy/60 opacity-0 backdrop-blur-sm transition-opacity duration-300 lg:hidden"></div>
+    <div id="mobile-navigation" data-mobile-nav aria-hidden="true" class="fixed inset-y-0 right-0 z-50 w-[min(88vw,24rem)] translate-x-full bg-navy px-6 py-6 text-white shadow-2xl shadow-navy/30 transition-transform duration-300 lg:hidden">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3 rounded-full focus:outline-none focus:ring-4 focus:ring-gold/50">
+          <img src="img/splitano-mark.svg" alt="Splitano logo" class="h-10 w-10">
+          <span class="text-xl font-extrabold tracking-tight">Splitano<span class="text-gold">.</span></span>
+        </a>
+        <button data-nav-close class="rounded-full bg-white/10 p-3 text-white focus:outline-none focus:ring-4 focus:ring-gold/40" type="button" aria-label="Close navigation">
+          <span class="block h-0.5 w-6 rotate-45 bg-current"></span>
+          <span class="-mt-0.5 block h-0.5 w-6 -rotate-45 bg-current"></span>
+        </button>
+      </div>
+      <div class="mt-12 grid gap-5 text-2xl font-extrabold">
+        <a data-nav-link href="how-it-works.html">How it works</a>
+        <div>
+          <button data-mobile-features-toggle class="flex min-h-[44px] w-full items-center justify-between rounded-2xl bg-white/10 px-4 py-3 text-left text-2xl font-extrabold" type="button" aria-expanded="false" aria-controls="mobile-features-menu">Features <i data-lucide="chevron-down" class="h-5 w-5"></i></button>
+          <div id="mobile-features-menu" class="mt-3 grid gap-3" hidden>
+            <a data-nav-link class="mobile-feature-link" href="pay-in-4.html"><i data-lucide="calendar-days"></i><span>Pay bills in 4</span></a>
+            <a data-nav-link class="mobile-feature-link" href="bill-pay.html"><i data-lucide="receipt-text"></i><span>Bill pay</span></a>
+          </div>
+        </div>
+        <a data-nav-link href="bill-savings.html">Bill Savings</a>
+        <a data-nav-link href="about.html">About us</a>
+        <a data-nav-link href="business.html">Business</a>
+      </div>
+      <a class="btn-gold mt-10 w-full" href="contact.html">Get Started</a>
+    </div>
+  </header>
+  <main id="main">
+    <section data-animate class="brand-shell px-5 pb-16 pt-32 lg:px-8 lg:pt-36">
+      <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div><p class="section-kicker">Bill pay</p><h1 class="mt-5 text-5xl font-extrabold tracking-tight text-navy lg:text-7xl">Send the bill to Splitano. Choose how you repay.</h1><p class="mt-6 max-w-2xl text-lg leading-8 text-gray-700">Bill pay is the broader Splitano service for eligible household bills: bring the bill, see the options, and choose a repayment path that fits the moment.</p><div class="mt-8 flex flex-col gap-4 sm:flex-row"><a class="btn-primary" href="contact.html">Start with a bill</a><a class="rounded-full bg-white px-8 py-4 text-center font-extrabold text-navy shadow-lg shadow-navy/5 ring-1 ring-navy/10 transition hover:-translate-y-0.5 hover:text-skyblue" href="billers.html">See supported billers</a></div></div>
+        <div class="interactive-panel p-6 md:p-8"><p class="text-sm font-extrabold uppercase tracking-[0.18em] text-skyblue">Umbrella service</p><div class="mt-5 grid gap-4"><div class="rounded-3xl bg-navy p-6 text-white"><p class="text-paleblue">Eligible bill</p><p class="mt-2 text-4xl font-extrabold">$620</p><p class="mt-4 text-paleblue">Upload the bill details for review before choosing a repayment path.</p></div><div class="grid gap-3 sm:grid-cols-2"><div class="rounded-2xl bg-paleblue p-4"><p class="font-extrabold text-navy">Repay once</p><p class="mt-2 text-sm text-gray-700">A lump-sum repayment option when that better matches the month.</p></div><div class="rounded-2xl bg-white p-4 shadow-lg"><p class="font-extrabold text-navy">Repay in 4</p><p class="mt-2 text-sm text-gray-700">A four-part plan when spreading the bill creates breathing room.</p></div></div></div></div>
+      </div>
+    </section>
+    <section data-animate class="section-pad bg-white px-5 lg:px-8"><div class="mx-auto max-w-7xl"><p class="section-kicker">What Bill pay covers</p><h2 class="mt-4 max-w-3xl text-4xl font-extrabold text-navy">A calmer path for important bills.</h2><div class="mt-8 grid gap-5 md:grid-cols-3"><article class="feature-card"><span class="icon-badge"><i data-lucide="upload-cloud"></i></span><h3 class="mt-5 text-2xl font-extrabold text-navy">Bring the bill</h3><p class="mt-3 text-gray-700">Start with provider, amount, due date, and account details so the payment can be reviewed responsibly.</p></article><article class="feature-card"><span class="icon-badge gold"><i data-lucide="landmark"></i></span><h3 class="mt-5 text-2xl font-extrabold text-navy">Provider-first support</h3><p class="mt-3 text-gray-700">Splitano keeps the focus on the bill that needs attention, not an open-ended cash advance.</p></article><article class="feature-card"><span class="icon-badge"><i data-lucide="route"></i></span><h3 class="mt-5 text-2xl font-extrabold text-navy">Repay your way</h3><p class="mt-3 text-gray-700">Depending on eligibility and offer details, customers may repay in one amount or use Pay bills in 4.</p></article></div></div></section>
+    <section data-animate class="navy-gradient px-5 py-16 text-white lg:px-8"><div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center"><div><p class="section-kicker text-paleblue">Repayment options</p><h2 class="mt-4 text-4xl font-extrabold">One service, more than one way to repay.</h2></div><div class="grid gap-4 sm:grid-cols-2"><a class="rounded-3xl bg-white/10 p-6 text-white ring-1 ring-white/10 transition hover:-translate-y-1" href="pay-in-4.html"><i data-lucide="calendar-days"></i><h3 class="mt-4 text-2xl font-extrabold">Pay bills in 4</h3><p class="mt-3 text-paleblue">Split one eligible bill into four clear repayments.</p></a><article class="rounded-3xl bg-white/10 p-6 text-white ring-1 ring-white/10"><i data-lucide="circle-dollar-sign"></i><h3 class="mt-4 text-2xl font-extrabold">Repay once</h3><p class="mt-3 text-paleblue">Use one repayment when you only need timing support, not a multi-payment plan.</p></article></div></div></section>
+    <section data-animate class="section-pad bg-paleblue px-5 lg:px-8"><div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center"><div><p class="section-kicker">Related feature</p><h2 class="mt-4 text-4xl font-extrabold text-navy">Good repayment habits should feel visible.</h2><p class="mt-5 leading-8 text-gray-700">Credit Builder remains a separate feature for customers who want to understand how consistent repayment behavior may support longer-term confidence.</p><a class="btn-primary mt-6" href="credit-builder.html">Explore Credit Builder</a></div><div class="grid gap-4 sm:grid-cols-2"><article class="lift-card bg-white p-6"><span class="icon-badge"><i data-lucide="bell-ring"></i></span><h3 class="mt-4 text-xl font-extrabold text-navy">Gentle reminders</h3><p class="mt-2 text-gray-700">Keep dates visible before they become stressful.</p></article><article class="lift-card bg-white p-6"><span class="icon-badge gold"><i data-lucide="trending-up"></i></span><h3 class="mt-4 text-xl font-extrabold text-navy">Progress signals</h3><p class="mt-2 text-gray-700">Make on-time behavior easier to notice and repeat.</p></article></div></div></section>
+    <section data-animate class="section-pad bg-white px-5 lg:px-8"><div class="mx-auto max-w-7xl"><p class="section-kicker">Before you start</p><h2 class="mt-4 max-w-3xl text-4xl font-extrabold text-navy">A few details make the review easier.</h2><div class="mt-8 grid gap-5 md:grid-cols-4"><div class="lift-card bg-paleblue p-6"><strong class="text-navy">Provider</strong><p class="mt-2 text-gray-700">Who needs to be paid.</p></div><div class="lift-card bg-white p-6"><strong class="text-navy">Amount</strong><p class="mt-2 text-gray-700">The current bill total.</p></div><div class="lift-card bg-paleblue p-6"><strong class="text-navy">Due date</strong><p class="mt-2 text-gray-700">When timing starts to matter.</p></div><div class="lift-card bg-white p-6"><strong class="text-navy">Reference</strong><p class="mt-2 text-gray-700">Any account detail the provider needs.</p></div></div></div></section>
+  </main>
+  <footer class="bg-navy px-5 py-14 text-white lg:px-8">
+    <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+      <div class="rounded-3xl bg-white/10 p-6">
+        <a href="index.html" class="flex items-center gap-3 rounded-full focus:outline-none focus:ring-4 focus:ring-gold/50">
+          <img src="img/splitano-mark.svg" alt="Splitano logo" class="h-10 w-10">
+          <span class="text-xl font-extrabold tracking-tight">Splitano<span class="text-gold">.</span></span>
+        </a>
+        <p class="mt-5 leading-7 text-paleblue">Splitano helps households turn urgent bills into calmer, interest-free repayment plans.</p>
+        <div class="mt-5 flex gap-3">
+          <a class="rounded-full bg-white/10 px-3 py-2 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-gold/40" href="contact.html" aria-label="Splitano on X">X</a>
+          <a class="rounded-full bg-white/10 px-3 py-2 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-gold/40" href="contact.html" aria-label="Splitano on LinkedIn">in</a>
+          <a class="rounded-full bg-white/10 px-3 py-2 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-gold/40" href="contact.html" aria-label="Splitano on Instagram">ig</a>
+        </div>
+      </div>
+      <div class="border-l border-white/10 pl-0 md:pl-6">
+        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="blocks"></i>Features</h2>
+        <div class="mt-5 grid gap-3 text-paleblue">
+          <a href="pay-in-4.html">Pay bills in 4</a>
+          <a href="bill-pay.html">Bill pay</a>
+          <a href="bill-savings.html">Bill Savings</a>
+          <a href="credit-builder.html">Credit Builder</a>
+          <a href="business.html">Business</a>
+        </div>
+      </div>
+      <div class="border-l border-white/10 pl-0 md:pl-6">
+        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="building-2"></i>Company</h2>
+        <div class="mt-5 grid gap-3 text-paleblue">
+          <a href="about.html">About Us</a>
+          <a href="business.html">Business</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="border-l border-white/10 pl-0 md:pl-6">
+        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="scale"></i>Legal</h2>
+        <div class="mt-5 grid gap-3 text-paleblue">
+          <a href="terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-6 text-sm leading-6 text-paleblue">
+      <p>&copy; 2026 Splitano. All rights reserved.</p>
+      <p class="mt-2">Splitano is not a bank. Approval, bill eligibility, repayment terms, and any fees are subject to product review and final customer agreement.</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -43,10 +43,16 @@
         <span class="text-2xl font-extrabold tracking-tight text-navy">Splitano<span class="text-gold">.</span></span>
       </a>
       <div class="hidden items-center gap-8 lg:flex">
-        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="how-it-works.html">How It Works</a>
-        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="credit-builder.html">Credit Builder</a>
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="how-it-works.html">How it works</a>
+        <div data-features-dropdown>
+          <button data-features-toggle class="inline-flex items-center gap-1 text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="features-menu">Features <i data-lucide="chevron-down" class="h-4 w-4"></i></button>
+          <div id="features-menu" data-features-menu aria-hidden="true" class="features-menu absolute left-1/2 top-full z-50 mt-4 w-[25rem] -translate-x-1/2 rounded-[1.5rem] border border-gray-100 bg-white p-3 text-navy shadow-2xl shadow-navy/20">
+            <a data-nav-link class="feature-menu-link" href="pay-in-4.html"><span class="icon-badge gold"><i data-lucide="calendar-days"></i></span><span><strong class="block text-sm">Pay bills in 4</strong><small class="mt-1 block text-gray-600">Split one bill into four clear repayments.</small></span></a>
+            <a data-nav-link class="feature-menu-link" href="bill-pay.html"><span class="icon-badge"><i data-lucide="receipt-text"></i></span><span><strong class="block text-sm">Bill pay</strong><small class="mt-1 block text-gray-600">Send eligible bills to Splitano for payment support.</small></span></a>
+          </div>
+        </div>
         <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="bill-savings.html">Bill Savings</a>
-        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="about.html">About Us</a>
+        <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="about.html">About us</a>
         <a data-nav-link class="text-sm font-extrabold text-navy transition hover:text-skyblue focus:outline-none focus:ring-4 focus:ring-gold/40" href="business.html">Business</a>
       </div>
       <div class="hidden items-center lg:flex">
@@ -70,11 +76,17 @@
           <span class="-mt-0.5 block h-0.5 w-6 -rotate-45 bg-current"></span>
         </button>
       </div>
-      <div class="mt-12 grid gap-6 text-2xl font-extrabold">
-        <a data-nav-link href="how-it-works.html">How It Works</a>
-        <a data-nav-link href="credit-builder.html">Credit Builder</a>
+      <div class="mt-12 grid gap-5 text-2xl font-extrabold">
+        <a data-nav-link href="how-it-works.html">How it works</a>
+        <div>
+          <button data-mobile-features-toggle class="flex min-h-[44px] w-full items-center justify-between rounded-2xl bg-white/10 px-4 py-3 text-left text-2xl font-extrabold" type="button" aria-expanded="false" aria-controls="mobile-features-menu">Features <i data-lucide="chevron-down" class="h-5 w-5"></i></button>
+          <div id="mobile-features-menu" class="mt-3 grid gap-3" hidden>
+            <a data-nav-link class="mobile-feature-link" href="pay-in-4.html"><i data-lucide="calendar-days"></i><span>Pay bills in 4</span></a>
+            <a data-nav-link class="mobile-feature-link" href="bill-pay.html"><i data-lucide="receipt-text"></i><span>Bill pay</span></a>
+          </div>
+        </div>
         <a data-nav-link href="bill-savings.html">Bill Savings</a>
-        <a data-nav-link href="about.html">About Us</a>
+        <a data-nav-link href="about.html">About us</a>
         <a data-nav-link href="business.html">Business</a>
       </div>
       <a class="btn-gold mt-10 w-full" href="contact.html">Get Started</a>
@@ -141,11 +153,13 @@
         </div>
       </div>
       <div class="border-l border-white/10 pl-0 md:pl-6">
-        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="blocks"></i>Product</h2>
+        <h2 class="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] text-gold"><i data-lucide="blocks"></i>Features</h2>
         <div class="mt-5 grid gap-3 text-paleblue">
-          <a href="how-it-works.html">How It Works</a>
-          <a href="credit-builder.html">Credit Builder</a>
+          <a href="pay-in-4.html">Pay bills in 4</a>
+          <a href="bill-pay.html">Bill pay</a>
           <a href="bill-savings.html">Bill Savings</a>
+          <a href="credit-builder.html">Credit Builder</a>
+          <a href="business.html">Business</a>
         </div>
       </div>
       <div class="border-l border-white/10 pl-0 md:pl-6">

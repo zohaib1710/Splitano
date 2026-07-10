@@ -5,6 +5,15 @@
   const navOverlay = document.querySelector("[data-nav-overlay]");
   const closeNav = document.querySelector("[data-nav-close]");
 
+  const collapseMobileFeatures = () => {
+    document.querySelectorAll("[data-mobile-features-toggle]").forEach((button) => {
+      const panelId = button.getAttribute("aria-controls");
+      const panel = panelId ? document.getElementById(panelId) : null;
+      button.setAttribute("aria-expanded", "false");
+      if (panel) panel.hidden = true;
+    });
+  };
+
   const setHeaderState = () => {
     if (!header) return;
     header.classList.toggle("header-scrolled", window.scrollY > 8);
@@ -18,6 +27,8 @@
     document.body.classList.toggle("nav-open", isOpen);
     if (isOpen) {
       closeNav?.focus();
+    } else {
+      collapseMobileFeatures();
     }
   };
 
@@ -41,8 +52,49 @@
     link.addEventListener("click", () => setNavOpen(false));
   });
 
+  document.querySelectorAll("[data-features-dropdown]").forEach((dropdown) => {
+    const toggle = dropdown.querySelector("[data-features-toggle]");
+    const menu = dropdown.querySelector("[data-features-menu]");
+    const setOpen = (isOpen) => {
+      dropdown.classList.toggle("features-open", isOpen);
+      toggle?.setAttribute("aria-expanded", String(isOpen));
+      menu?.setAttribute("aria-hidden", String(!isOpen));
+    };
+
+    toggle?.addEventListener("click", (event) => {
+      event.preventDefault();
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      setOpen(!isOpen);
+    });
+
+    dropdown.addEventListener("mouseleave", () => setOpen(false));
+    dropdown.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggle?.focus();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!dropdown.contains(event.target)) setOpen(false);
+    });
+  });
+
+  document.querySelectorAll("[data-mobile-features-toggle]").forEach((button) => {
+    const panelId = button.getAttribute("aria-controls");
+    const panel = panelId ? document.getElementById(panelId) : null;
+    button.addEventListener("click", () => {
+      const isOpen = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", String(!isOpen));
+      if (panel) panel.hidden = isOpen;
+    });
+  });
+
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setNavOpen(false);
+    if (event.key === "Escape") {
+      setNavOpen(false);
+      collapseMobileFeatures();
+    }
   });
 
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
@@ -50,6 +102,43 @@
     if (link.getAttribute("href") === currentPage) {
       link.setAttribute("aria-current", "page");
     }
+  });
+  if (["pay-in-4.html", "bill-pay.html"].includes(currentPage)) {
+    document.querySelectorAll("[data-features-toggle], [data-mobile-features-toggle]").forEach((button) => {
+      button.classList.add("text-skyblue");
+    });
+  }
+
+  document.querySelectorAll("[data-biller-marquee]").forEach((track) => {
+    const carousel = track.closest(".biller-carousel");
+    if (!carousel || track.dataset.marqueeReady === "true") return;
+    track.dataset.marqueeReady = "true";
+
+    Array.from(track.children).forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    });
+
+    let resumeTimer;
+    const pause = () => {
+      window.clearTimeout(resumeTimer);
+      carousel.classList.add("is-paused");
+    };
+    const resumeSoon = () => {
+      window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => carousel.classList.remove("is-paused"), 900);
+    };
+
+    carousel.addEventListener("pointerenter", pause);
+    carousel.addEventListener("pointerleave", resumeSoon);
+    carousel.addEventListener("pointerdown", pause);
+    carousel.addEventListener("pointerup", resumeSoon);
+    carousel.addEventListener("pointercancel", resumeSoon);
+    carousel.addEventListener("touchstart", pause, { passive: true });
+    carousel.addEventListener("touchend", resumeSoon, { passive: true });
+    carousel.addEventListener("focusin", pause);
+    carousel.addEventListener("focusout", resumeSoon);
   });
 
   document.querySelectorAll("[data-accordion-button]").forEach((button) => {
