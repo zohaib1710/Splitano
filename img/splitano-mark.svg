@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
-  <title id="title">Splitano mark</title>
-  <desc id="desc">A rounded navy payment tile with a gold split line.</desc>
-  <rect width="96" height="96" rx="28" fill="#0B2A4A"/>
-  <path d="M25 35c0-8 7-15 15-15h31v14H41a2 2 0 0 0-2 2v5h19c9 0 16 7 16 16s-7 16-16 16H27V59h31a2 2 0 0 0 0-4H41c-9 0-16-7-16-16v-4Z" fill="#fff"/>
-  <path d="M22 76 76 20" stroke="#FFC94A" stroke-width="8" stroke-linecap="round"/>
-</svg>
