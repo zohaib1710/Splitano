@@ -499,7 +499,15 @@ header nav {
 
 @media (max-width: 1023px) {
   [data-nav-toggle] {
-    display: block !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  [data-nav-toggle] span {
+    margin-top: 0 !important;
   }
 }
 
@@ -742,6 +750,12 @@ footer [data-lucide] {
 }
 
 @media (max-width: 639px) {
+  .site-logo-header {
+    height: auto;
+    width: min(11.5rem, 58vw);
+    max-width: 11.5rem;
+  }
+
   .brand-shell {
     background-size: auto, auto, auto;
   }
@@ -784,25 +798,23 @@ footer [data-lucide] {
     margin-left: 0 !important;
     margin-right: 0 !important;
     max-width: 100% !important;
+    min-height: 4.4rem;
+    padding: 0.85rem 1.25rem !important;
   }
 
   [data-nav-toggle] {
-    position: fixed;
-    left: min(calc(100vw - 4.4rem), 320px);
-    right: auto;
-    top: 1.1rem;
-    display: block !important;
+    position: static !important;
+    flex: 0 0 auto;
+    height: 3rem;
+    width: 3rem;
+    padding: 0 !important;
   }
 }
 
 @media (max-width: 380px) {
-  [data-nav-toggle] {
-    left: min(calc(100vw - 4.1rem), 300px);
-  }
-
   .site-logo-header {
-    height: 2.05rem;
-    max-width: 10rem;
+    width: min(10.2rem, 56vw);
+    max-width: 10.2rem;
   }
 
   .site-logo-mobile {
@@ -812,8 +824,8 @@ footer [data-lucide] {
 }
 
 @media (max-width: 340px) {
-  [data-nav-toggle] {
-    left: min(calc(100vw - 4rem), 260px);
+  .site-logo-header {
+    width: min(9.25rem, 54vw);
   }
 }
 
@@ -1123,22 +1135,61 @@ select.field-shell {
 }
 
 @media (hover: none) {
+  .flip-card {
+    min-height: 15rem;
+    perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    display: block;
+    min-height: 15rem;
+    transition: transform 520ms ease;
+    transform-style: preserve-3d;
+  }
+
   .flip-card .flip-face:not(.flip-back) {
-    position: relative;
+    position: absolute;
+    inset: 0;
+    min-height: 15rem;
+    opacity: 1;
+    transform: none;
+    backface-visibility: hidden;
   }
 
   .flip-back {
-    position: relative;
-    margin-top: 0.75rem;
+    position: absolute;
+    inset: 0;
+    min-height: 15rem;
     opacity: 1;
     pointer-events: auto;
-    transform: none;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
   }
 
   .flip-card:hover .flip-face:not(.flip-back),
   .flip-card:focus-within .flip-face:not(.flip-back) {
     opacity: 1;
     transform: none;
+  }
+
+  .flip-card.is-mobile-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+@media (max-width: 639px) {
+  .flip-card {
+    border-radius: 1.5rem;
+    overflow: visible;
+    box-shadow: 0 22px 54px rgba(11, 42, 74, 0.1);
+  }
+
+  .flip-card .flip-face {
+    padding: 1.25rem !important;
+  }
+
+  .flip-card .flip-back p {
+    line-height: 1.7;
   }
 }
 

@@ -364,6 +364,30 @@
     item.style.setProperty("--stagger-index", String(index % 6));
   });
 
+  const mobileFlipCards = Array.from(document.querySelectorAll(".flip-card"));
+  const mobileHoverQuery = window.matchMedia("(hover: none)");
+  const updateMobileFlipCards = () => {
+    if (!mobileHoverQuery.matches) {
+      mobileFlipCards.forEach((card) => card.classList.remove("is-mobile-flipped"));
+    }
+  };
+
+  if (mobileFlipCards.length && "IntersectionObserver" in window) {
+    const flipObserver = new IntersectionObserver(
+      (entries) => {
+        if (!mobileHoverQuery.matches) return;
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-mobile-flipped", entry.isIntersecting);
+        });
+      },
+      { threshold: 0.72, rootMargin: "-12% 0px -18% 0px" }
+    );
+
+    mobileFlipCards.forEach((card) => flipObserver.observe(card));
+    mobileHoverQuery.addEventListener?.("change", updateMobileFlipCards);
+    updateMobileFlipCards();
+  }
+
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries) => {
