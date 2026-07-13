@@ -651,7 +651,7 @@
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.16 }
+      { threshold: 0.01, rootMargin: "0px 0px -8% 0px" }
     );
 
     animatedItems.forEach((item) => observer.observe(item));
