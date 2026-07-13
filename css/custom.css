@@ -107,7 +107,7 @@ small {
 }
 
 .bg-paleblue {
-  background-color: #eaf2ff !important;
+  /* background-color: #eaf2ff !important; */
 }
 
 .bg-gold {
@@ -1305,81 +1305,56 @@ select.field-shell {
 .biller-card {
   position: relative;
   display: grid;
-  min-height: 14rem;
-  grid-template-columns: auto 1fr;
   align-content: start;
-  column-gap: 0.9rem;
+  justify-items: center;
+  gap: 0.65rem;
   overflow: hidden;
-  border: 1px solid rgba(30, 111, 235, 0.1);
-  border-radius: 1.75rem;
-  background:
-    radial-gradient(circle at 88% 12%, rgba(255, 201, 74, 0.18), transparent 34%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
-  padding: 1.5rem;
-  box-shadow: 0 24px 60px rgba(11, 42, 74, 0.12);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+  min-height: 20rem;
+  border-radius: 1rem;
+  padding: 0.25rem 0.7rem 0.9rem;
+  text-align: center;
+  transition: transform 180ms ease;
 }
 
-.biller-card::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: 0.35rem;
-  background: linear-gradient(90deg, #1e6feb, #ffc94a);
+.biller-art {
+  display: block;
+  width: min(100%, 15.5rem);
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 16px 22px rgba(11, 42, 74, 0.14));
+  transition: transform 180ms ease, filter 180ms ease;
 }
 
-.biller-card .icon-badge {
-  position: relative;
-  z-index: 1;
-  height: 3.25rem;
-  width: 3.25rem;
-}
-
-.biller-card p {
-  grid-column: 1 / -1;
-  position: relative;
-  z-index: 1;
-}
-
-.biller-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(30, 111, 235, 0.28);
-  box-shadow: 0 30px 76px rgba(11, 42, 74, 0.18);
-}
-
-.wordmark-badge {
+.biller-action {
   display: inline-flex;
-  position: relative;
-  z-index: 1;
-  min-height: 3.25rem;
   align-items: center;
-  justify-content: center;
-  align-self: start;
-  justify-self: start;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #0b2a4a, #123a63);
-  color: #ffffff;
-  margin-top: 0 !important;
-  padding: 0.75rem 1.2rem;
+  gap: 0.45rem;
+  color: #1e2bff;
   font-weight: 900;
-  letter-spacing: -0.03em;
-  box-shadow: 0 14px 32px rgba(11, 42, 74, 0.18);
-  max-width: 100%;
+  transition: color 180ms ease, transform 180ms ease;
 }
 
-.biller-card::after {
-  content: attr(data-biller-category);
-  position: absolute;
-  right: 1.25rem;
-  bottom: 1.1rem;
-  border-radius: 999px;
-  background: #eaf2ff;
-  color: #1e6feb;
-  padding: 0.35rem 0.7rem;
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.biller-action [data-lucide] {
+  height: 1rem;
+  width: 1rem;
+}
+
+.biller-card:hover,
+.biller-card:focus-within {
+  transform: translateY(-5px);
+}
+
+.biller-card:hover .biller-art,
+.biller-card:focus-within .biller-art {
+  transform: translateY(-4px) scale(1.02);
+  filter: drop-shadow(0 20px 26px rgba(11, 42, 74, 0.18));
+}
+
+.biller-card:hover .biller-action,
+.biller-card:focus-within .biller-action {
+  color: #0b2a4a;
+  transform: translateX(2px);
 }
 
 .biller-carousel {
@@ -1395,7 +1370,7 @@ select.field-shell {
 }
 
 .biller-carousel .biller-card {
-  flex: 0 0 21rem;
+  flex: 0 0 16.5rem;
 }
 
 .biller-carousel-track {
@@ -1727,25 +1702,16 @@ select.field-shell {
   }
 
   .biller-carousel .biller-card {
-    flex-basis: min(78vw, 20rem);
+    flex-basis: min(78vw, 16rem);
   }
 
   .biller-card {
-    min-height: 13rem;
-    padding: 1.2rem;
-    padding-bottom: 3.4rem;
+    min-height: 18rem;
+    padding: 0.2rem 0.5rem 0.9rem;
   }
 
-  .biller-card::after {
-    left: 1.2rem;
-    right: auto;
-    bottom: 1rem;
-  }
-
-  .wordmark-badge {
-    min-height: 2.85rem;
-    padding: 0.65rem 1rem;
-    font-size: 0.95rem;
+  .biller-art {
+    width: min(100%, 14rem);
   }
 
   footer .border-l {
@@ -1815,10 +1781,6 @@ select.field-shell {
 
   .biller-carousel .biller-card {
     flex-basis: 80vw;
-  }
-
-  .wordmark-badge {
-    font-size: 0.86rem;
   }
 }
 
