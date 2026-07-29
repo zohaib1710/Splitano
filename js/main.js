@@ -430,15 +430,15 @@
     const schedule = billPaySwitcher.querySelector("[data-bill-pay-schedule]");
     const modes = {
       four: {
-        label: "Four-part plan",
-        heading: "Split an eligible bill into one larger first payment and three smaller follow-ups.",
-        copy: "Useful when spreading the bill creates breathing room and the customer wants repayment dates shown upfront.",
+        label: "Four Part Plan",
+        heading: "Spread one bill across four scheduled payments.",
+        copy: "Pay 40% upfront, followed by three scheduled payments of 20% each. Every payment is shown before you confirm, making it easier to plan your budget with confidence.",
         schedule: ["$153.60", "$76.80", "$76.80", "$76.80"]
       },
       once: {
-        label: "Single repayment",
-        heading: "Use one planned repayment when timing is the main pressure.",
-        copy: "Helpful when the customer can repay in one amount, but needs the provider payment handled first.",
+        label: "PAY IN FULL",
+        heading: "Pay once and save 25%",
+        copy: "Complete your eligible bill in a single payment and automatically receive 25% off. It's the fastest way to finish your payment while enjoying extra savings.",
         schedule: ["Provider paid", "One repayment", "Clear due date"]
       }
     };
