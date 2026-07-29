@@ -15,49 +15,42 @@
     modal.setAttribute("aria-hidden", "true");
     modal.innerHTML = `
       <div class="modal-backdrop" data-get-started-close></div>
-      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="get-started-title">
+      <div class="modal-panel application-modal-panel" role="dialog" aria-modal="true" aria-labelledby="get-started-title">
         <button class="modal-close" type="button" data-get-started-close aria-label="Close form"><i data-lucide="x"></i></button>
-        <div class="modal-grid grid gap-4 lg:grid-cols-[0.72fr_1.28fr]">
-          <div class="modal-intro rounded-3xl bg-navy p-6 text-white">
+        <div class="modal-grid application-modal-grid grid gap-0 lg:grid-cols-[0.72fr_1.28fr]">
+          <aside class="modal-intro application-intro rounded-3xl bg-navy p-6 text-white">
             <img src="img/splitano-logo-white.png" alt="Splitano" class="site-logo site-logo-modal">
-            <p class="section-kicker mt-6 text-gold">Get Started</p>
-            <h2 id="get-started-title" class="mt-4 text-3xl font-extrabold">Ready to make this bill easier to manage?</h2>
-            <p class="mt-4 leading-7 text-paleblue">Share a few details and the Splitano team will help you find the right next step for your bill, repayment timing, or account question.</p>
-          </div>
-          <form data-contact-form data-get-started-form method="post" action="contact.html" novalidate class="modal-form rounded-3xl bg-white p-5 md:p-6">
+            <div class="application-intro-copy">
+              <p class="section-kicker mt-6 text-gold">Start your application</p>
+              <h2 id="get-started-title" class="mt-4 text-3xl font-extrabold">Let's make this bill easier to manage.</h2>
+              <p class="mt-4 leading-7 text-paleblue">Share a few details about your bill and choose the payment option that works best for you. Our team will review your application and guide you through the next steps.</p>
+            </div>
+            <div class="application-benefits mt-8 grid gap-5">
+              <div class="application-benefit"><span class="application-benefit-icon"><i data-lucide="shield-check"></i></span><span><strong>Secure &amp; Private</strong><small>Your information is encrypted and always protected.</small></span></div>
+              <div class="application-benefit"><span class="application-benefit-icon"><i data-lucide="clock-3"></i></span><span><strong>Quick Review</strong><small>Most applications are reviewed within 1 business day.</small></span></div>
+              <div class="application-benefit"><span class="application-benefit-icon"><i data-lucide="circle-check"></i></span><span><strong>Flexible Options</strong><small>Choose Pay in 4 or Pay in Full—whichever works for you.</small></span></div>
+            </div>
+          </aside>
+          <form data-application-form method="post" action="contact.html" novalidate class="modal-form application-form rounded-3xl bg-white p-5 md:p-6">
             <img src="img/splitano-logo-black.png" alt="Splitano" class="site-logo modal-mobile-logo">
-            <div data-contact-tabs class="grid gap-3 rounded-full bg-paleblue p-2 sm:grid-cols-2">
-              <button data-contact-tab="support" class="tab-button rounded-full px-5 py-3 font-extrabold text-navy transition" type="button" aria-selected="true">General Support</button>
-              <button data-contact-tab="business" class="tab-button rounded-full px-5 py-3 font-extrabold text-navy transition" type="button" aria-selected="false">Business Inquiries</button>
+            <div class="application-fields grid gap-4 md:grid-cols-2">
+              <label class="application-label">Full name<div class="application-input-wrap"><i data-lucide="user-round"></i><input name="full_name" required class="field-shell" type="text" autocomplete="name" placeholder="Enter your full name"></div><p data-application-error="full_name" class="application-error"></p></label>
+              <label class="application-label">Phone number<div class="application-input-wrap"><i data-lucide="phone"></i><input name="phone" required class="field-shell" type="tel" autocomplete="tel" placeholder="(123) 456-7890"></div><p data-application-error="phone" class="application-error"></p></label>
+              <label class="application-label md:col-span-2">Email address <span>(optional)</span><div class="application-input-wrap"><i data-lucide="mail"></i><input name="email" class="field-shell" type="email" autocomplete="email" placeholder="Enter your email address"></div><p data-application-error="email" class="application-error"></p></label>
+              <label class="application-label md:col-span-2">Bill provider<div class="application-input-wrap"><i data-lucide="landmark"></i><input name="provider" required class="field-shell" type="text" placeholder="Enter the name of your provider"></div><p data-application-error="provider" class="application-error"></p></label>
+              <div class="application-label md:col-span-2"><span>Payment option</span><div class="application-select" data-payment-select><button data-payment-trigger class="application-select-trigger" type="button" aria-expanded="false" aria-controls="payment-options"><span><i data-lucide="credit-card"></i><span data-payment-label>Select your payment option</span></span><i data-lucide="chevron-down"></i></button><div id="payment-options" data-payment-menu class="application-select-menu" hidden><button data-payment-choice="pay-in-4" type="button"><span class="application-option-icon"><i data-lucide="calendar-days"></i></span><span><strong>Pay in 4</strong><small>Split your bill into 4 payments. Pay 40% today and the rest in 3 equal payments.</small></span></button><button data-payment-choice="pay-in-full" type="button"><span class="application-option-icon application-option-icon-green"><i data-lucide="banknote"></i></span><span><strong>Pay in Full</strong><small>Pay your bill in full today and save 25% on our service fee.</small></span></button></div></div><input data-payment-input name="payment_option" required type="hidden"><p data-application-error="payment_option" class="application-error"></p></div>
+              <div class="application-label md:col-span-2"><span>Upload your bill</span><label class="application-upload" data-upload-dropzone><input data-file-input name="bill_file" required type="file" accept=".pdf,.jpg,.jpeg,.png"><span class="application-upload-icon"><i data-lucide="cloud-upload"></i></span><span><strong data-file-name>Click to upload or drag and drop</strong><small>PDF, JPG, PNG up to 10MB</small></span></label><p data-application-error="bill_file" class="application-error"></p></div>
+              <label class="application-label md:col-span-2">Additional notes <span>(optional)</span><div class="application-input-wrap application-textarea-wrap"><i data-lucide="message-square-text"></i><textarea data-notes-input name="notes" class="field-shell" rows="3" maxlength="500" placeholder="Anything you'd like our team to know?"></textarea><span class="application-counter"><span data-notes-count>0</span>/500</span></div><p data-application-error="notes" class="application-error"></p></label>
             </div>
-            <div class="mt-6 grid gap-5 md:grid-cols-2">
-              <label class="font-bold text-navy">Name<input name="name" required class="field-shell mt-2" type="text" autocomplete="name"></label>
-              <label class="font-bold text-navy">Email<input name="email" required class="field-shell mt-2" type="email" autocomplete="email"></label>
-            </div>
-            <div class="grid gap-1 md:grid-cols-2"><p data-error-for="name" class="text-sm font-bold text-red-600"></p><p data-error-for="email" class="text-sm font-bold text-red-600"></p></div>
-            <label class="mt-5 block font-bold text-navy">Subject<select data-contact-subject name="subject" required class="field-shell mt-2"><option value="">Choose a topic</option><option>Customer support</option><option>Business partnership</option><option>Credit Builder</option></select></label>
-            <p data-error-for="subject" class="text-sm font-bold text-red-600"></p>
-            <div data-contact-panel="support"><label class="mt-5 block font-bold text-navy">Bill or account question<textarea name="message" data-required-when-visible="true" required rows="5" class="field-shell mt-2"></textarea></label></div>
-            <div data-contact-panel="business" hidden>
-              <div class="mt-5 grid gap-5 md:grid-cols-2">
-                <label class="font-bold text-navy">Company<input name="company" data-required-when-visible="true" class="field-shell mt-2" type="text"></label>
-                <label class="font-bold text-navy">Monthly bill volume<input name="volume" class="field-shell mt-2" type="number" min="0"></label>
-              </div>
-              <label class="mt-5 block font-bold text-navy">Partnership notes<textarea name="business_message" data-required-when-visible="true" rows="5" class="field-shell mt-2"></textarea></label>
-            </div>
-            <p data-error-for="message" class="text-sm font-bold text-red-600"></p>
-            <p data-error-for="company" class="text-sm font-bold text-red-600"></p>
-            <p data-error-for="business_message" class="text-sm font-bold text-red-600"></p>
-            <button class="btn-primary mt-6 w-full" type="submit">Send message</button>
-            <p data-form-status class="mt-4 font-bold text-navy" role="status"></p>
+            <button class="btn-primary application-submit mt-5 w-full" type="submit"><i data-lucide="lock-keyhole"></i>Submit application</button>
+            <p data-application-status class="mt-3 text-center font-bold text-navy" role="status"></p>
           </form>
         </div>
       </div>
     `;
     document.body.appendChild(modal);
     getStartedModal = modal;
-    initContactTabs(modal);
-    initContactForms(modal);
+    initApplicationForm(modal);
     if (window.lucide) window.lucide.createIcons();
     return modal;
   };
@@ -248,6 +241,146 @@
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
+
+  const initApplicationForm = (root) => {
+    const form = root.querySelector("[data-application-form]");
+    if (!form || form.dataset.applicationReady === "true") return;
+    form.dataset.applicationReady = "true";
+
+    const paymentSelect = form.querySelector("[data-payment-select]");
+    const paymentTrigger = form.querySelector("[data-payment-trigger]");
+    const paymentMenu = form.querySelector("[data-payment-menu]");
+    const paymentInput = form.querySelector("[data-payment-input]");
+    const paymentLabel = form.querySelector("[data-payment-label]");
+    const fileInput = form.querySelector("[data-file-input]");
+    const dropzone = form.querySelector("[data-upload-dropzone]");
+    const fileName = form.querySelector("[data-file-name]");
+    const notesInput = form.querySelector("[data-notes-input]");
+    const notesCount = form.querySelector("[data-notes-count]");
+    const status = form.querySelector("[data-application-status]");
+    const maxFileSize = 10 * 1024 * 1024;
+    const validFileTypes = ["application/pdf", "image/jpeg", "image/png"];
+
+    const errorFor = (name) => form.querySelector(`[data-application-error="${name}"]`);
+    const showError = (field, message) => {
+      field?.setAttribute("aria-invalid", "true");
+      const error = errorFor(field?.name);
+      if (error) error.textContent = message;
+    };
+    const clearError = (field) => {
+      field?.removeAttribute("aria-invalid");
+      if (field && field !== paymentInput) field.classList.toggle("is-valid", Boolean(field.value.trim()));
+      const error = errorFor(field?.name);
+      if (error) error.textContent = "";
+    };
+    const closePaymentMenu = () => {
+      if (!paymentMenu || !paymentTrigger) return;
+      paymentMenu.hidden = true;
+      paymentTrigger.setAttribute("aria-expanded", "false");
+      paymentSelect?.classList.remove("is-open");
+    };
+    const updateFileName = (file) => {
+      if (!fileName) return;
+      fileName.textContent = file ? file.name : "Click to upload or drag and drop";
+      dropzone?.classList.toggle("has-file", Boolean(file));
+    };
+    const validateFile = (file) => {
+      if (!file) return "Upload your bill to continue.";
+      if (!validFileTypes.includes(file.type)) return "Upload a PDF, JPG, or PNG file.";
+      if (file.size > maxFileSize) return "Your file must be 10MB or smaller.";
+      return "";
+    };
+    const setFile = (file) => {
+      if (!fileInput || !file) return;
+      const message = validateFile(file);
+      if (message) {
+        showError(fileInput, message);
+        updateFileName(null);
+        fileInput.value = "";
+        return;
+      }
+      const transfer = new DataTransfer();
+      transfer.items.add(file);
+      fileInput.files = transfer.files;
+      clearError(fileInput);
+      updateFileName(file);
+    };
+
+    paymentTrigger?.addEventListener("click", () => {
+      const isOpen = !paymentMenu.hidden;
+      paymentMenu.hidden = isOpen;
+      paymentTrigger.setAttribute("aria-expanded", String(!isOpen));
+      paymentSelect?.classList.toggle("is-open", !isOpen);
+    });
+    paymentMenu?.querySelectorAll("[data-payment-choice]").forEach((choice) => {
+      choice.addEventListener("click", () => {
+        paymentInput.value = choice.dataset.paymentChoice || "";
+        paymentLabel.textContent = choice.querySelector("strong")?.textContent || "Select your payment option";
+        clearError(paymentInput);
+        closePaymentMenu();
+      });
+    });
+    document.addEventListener("click", (event) => {
+      if (paymentSelect && !paymentSelect.contains(event.target)) closePaymentMenu();
+    });
+
+    form.querySelectorAll("input:not([type=hidden]), textarea").forEach((field) => {
+      field.addEventListener("input", () => {
+        if (field.getAttribute("aria-invalid") === "true") clearError(field);
+        field.classList.toggle("is-valid", Boolean(field.value.trim()));
+      });
+      field.addEventListener("blur", () => {
+        field.classList.toggle("is-valid", Boolean(field.value.trim()) && field.getAttribute("aria-invalid") !== "true");
+      });
+    });
+    notesInput?.addEventListener("input", () => {
+      if (notesCount) notesCount.textContent = String(notesInput.value.length);
+    });
+    fileInput?.addEventListener("change", () => setFile(fileInput.files?.[0]));
+    ["dragenter", "dragover"].forEach((eventName) => dropzone?.addEventListener(eventName, (event) => {
+      event.preventDefault();
+      dropzone.classList.add("is-dragging");
+    }));
+    ["dragleave", "drop"].forEach((eventName) => dropzone?.addEventListener(eventName, (event) => {
+      event.preventDefault();
+      dropzone.classList.remove("is-dragging");
+    }));
+    dropzone?.addEventListener("drop", (event) => setFile(event.dataTransfer?.files?.[0]));
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      let isValid = true;
+      const fields = Array.from(form.querySelectorAll("input:not([type=hidden]), textarea"));
+      fields.forEach((field) => clearError(field));
+      clearError(paymentInput);
+
+      const fullName = form.elements.full_name;
+      const phone = form.elements.phone;
+      const email = form.elements.email;
+      const provider = form.elements.provider;
+      if (!fullName.value.trim()) { showError(fullName, "Enter your full name."); isValid = false; }
+      if (!phone.value.trim()) { showError(phone, "Enter your phone number."); isValid = false; }
+      else if (!/^[+()\d\s.-]{7,}$/.test(phone.value.trim())) { showError(phone, "Enter a valid phone number."); isValid = false; }
+      if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { showError(email, "Enter a valid email address."); isValid = false; }
+      if (!provider.value.trim()) { showError(provider, "Enter your bill provider."); isValid = false; }
+      if (!paymentInput.value) { showError(paymentInput, "Choose a payment option."); isValid = false; }
+      const fileMessage = validateFile(fileInput.files?.[0]);
+      if (fileMessage) { showError(fileInput, fileMessage); isValid = false; }
+      if (!isValid) {
+        const firstInvalid = form.querySelector('[aria-invalid="true"]');
+        firstInvalid?.focus?.();
+        if (status) status.textContent = "Please fix the highlighted fields.";
+        return;
+      }
+      if (status) status.textContent = "Thanks. We received your application and will be in touch soon.";
+      form.reset();
+      fields.forEach((field) => field.classList.remove("is-valid"));
+      paymentInput.value = "";
+      paymentLabel.textContent = "Select your payment option";
+      updateFileName(null);
+      if (notesCount) notesCount.textContent = "0";
+    });
+  };
 
   const initContactForms = (root = document) => {
     root.querySelectorAll("[data-contact-form]").forEach((contactForm) => {
