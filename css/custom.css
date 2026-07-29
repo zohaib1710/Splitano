@@ -1190,6 +1190,15 @@ select.field-shell {
   flex: 0 0 100%;
 }
 
+@media (max-width: 640px) {
+  .timeline-carousel [data-timeline-prev],
+  .timeline-carousel [data-timeline-next] {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+}
+
 .timeline-dot[aria-current="true"] {
   width: 2.5rem;
   background: #ffc94a;
