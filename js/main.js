@@ -7,6 +7,41 @@
   let getStartedModal = null;
   let lastModalTrigger = null;
 
+  const cleanNavigationAndCtas = () => {
+    document.querySelectorAll('a[href="business.html"], a[href="credit-builder.html"]').forEach((link) => {
+      const label = link.textContent.trim().toLowerCase();
+      const isNavigationItem = link.matches("[data-nav-link]") || link.closest("footer") || label === "business" || label === "credit builder";
+      if (isNavigationItem) {
+        link.remove();
+      } else {
+        link.href = link.getAttribute("href") === "business.html" ? "bill-pay.html" : "pay-in-4.html";
+      }
+    });
+
+    const ctaLabels = new Map([
+      ["Get Started", "Start Your Application"],
+      ["Start with a bill", "Apply with Your Bill"],
+      ["Explore Bill pay", "Explore Payment Options"],
+      ["Explore Pay in 4", "See Pay in 4 Options"],
+      ["See supported billers", "View Eligible Billers"],
+      ["Learn More", "See How It Works"]
+    ]);
+    document.querySelectorAll("a, button, span").forEach((element) => {
+      const label = element.textContent.trim();
+      if (ctaLabels.has(label)) element.childNodes.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() === label) node.textContent = ctaLabels.get(label);
+      });
+    });
+
+    const billPayHeroBillerLink = document.querySelector('.brand-shell a[href="billers.html"]');
+    if (billPayHeroBillerLink) {
+      billPayHeroBillerLink.href = "tel:+17548128575";
+      billPayHeroBillerLink.textContent = "Call Now";
+    }
+  };
+
+  cleanNavigationAndCtas();
+
   const createGetStartedModal = () => {
     if (getStartedModal) return getStartedModal;
 
@@ -38,7 +73,7 @@
               <label class="application-label">Phone number<div class="application-input-wrap"><i data-lucide="phone"></i><input name="phone" required class="field-shell" type="tel" autocomplete="tel" placeholder="(123) 456-7890"></div><p data-application-error="phone" class="application-error"></p></label>
               <label class="application-label md:col-span-2">Email address <span>(optional)</span><div class="application-input-wrap"><i data-lucide="mail"></i><input name="email" class="field-shell" type="email" autocomplete="email" placeholder="Enter your email address"></div><p data-application-error="email" class="application-error"></p></label>
               <label class="application-label md:col-span-2">Bill provider<div class="application-input-wrap"><i data-lucide="landmark"></i><input name="provider" required class="field-shell" type="text" placeholder="Enter the name of your provider"></div><p data-application-error="provider" class="application-error"></p></label>
-              <div class="application-label md:col-span-2"><span>Payment option</span><div class="application-select" data-payment-select><button data-payment-trigger class="application-select-trigger" type="button" aria-expanded="false" aria-controls="payment-options"><span><i data-lucide="credit-card"></i><span data-payment-label>Select your payment option</span></span><i data-lucide="chevron-down"></i></button><div id="payment-options" data-payment-menu class="application-select-menu" hidden><button data-payment-choice="pay-in-4" type="button"><span class="application-option-icon"><i data-lucide="calendar-days"></i></span><span><strong>Pay in 4</strong><small>Split your bill into 4 payments. Pay 40% today and the rest in 3 equal payments.</small></span></button><button data-payment-choice="pay-in-full" type="button"><span class="application-option-icon application-option-icon-green"><i data-lucide="banknote"></i></span><span><strong>Pay in Full</strong><small>Pay your bill in full today and save 25% on our service fee.</small></span></button></div></div><input data-payment-input name="payment_option" required type="hidden"><p data-application-error="payment_option" class="application-error"></p></div>
+              <div class="application-label md:col-span-2"><span>Payment option</span><div class="application-select" data-payment-select><button data-payment-trigger class="application-select-trigger" type="button" aria-expanded="false" aria-controls="payment-options"><span><i data-lucide="credit-card"></i><span data-payment-label>Select your payment option</span></span><i data-lucide="chevron-down"></i></button><div id="payment-options" data-payment-menu class="application-select-menu" hidden><button data-payment-choice="pay-in-4" type="button"><span class="application-option-icon"><i data-lucide="calendar-days"></i></span><span><strong>Pay in 4</strong><small>Split your bill into 4 payments with the first payment due today and the remaining payments scheduled each week.</small></span></button><button data-payment-choice="pay-in-full" type="button"><span class="application-option-icon application-option-icon-green"><i data-lucide="banknote"></i></span><span><strong>Pay in Full</strong><small>Pay your bill in full today and save 25% on our service fee.</small></span></button></div></div><input data-payment-input name="payment_option" required type="hidden"><p data-application-error="payment_option" class="application-error"></p></div>
               <div class="application-label md:col-span-2"><span>Upload your bill</span><label class="application-upload" data-upload-dropzone><input data-file-input name="bill_file" required type="file" accept=".pdf,.jpg,.jpeg,.png"><span class="application-upload-icon"><i data-lucide="cloud-upload"></i></span><span><strong data-file-name>Click to upload or drag and drop</strong><small>PDF, JPG, PNG up to 10MB</small></span></label><p data-application-error="bill_file" class="application-error"></p></div>
               <label class="application-label md:col-span-2">Additional notes <span>(optional)</span><div class="application-input-wrap application-textarea-wrap"><i data-lucide="message-square-text"></i><textarea data-notes-input name="notes" class="field-shell" rows="3" maxlength="500" placeholder="Anything you'd like our team to know?"></textarea><span class="application-counter"><span data-notes-count>0</span>/500</span></div><p data-application-error="notes" class="application-error"></p></label>
             </div>
@@ -171,7 +206,7 @@
     const link = event.target.closest('a[href="contact.html"]');
     if (!link) return;
     const label = link.textContent.trim().toLowerCase();
-    if (!/get started|start with a bill/.test(label)) return;
+    if (!/get started|start your application|start with a bill/.test(label)) return;
     event.preventDefault();
     setGetStartedOpen(true, link);
   });
@@ -444,11 +479,18 @@
   const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
   const shortCurrency = (value) => currency.format(Number.isFinite(value) ? value : 0).replace(".00", "");
   const splitPlan = [
-    { label: "Payment 1", percentage: 0.4 },
-    { label: "Payment 2", percentage: 0.2 },
-    { label: "Payment 3", percentage: 0.2 },
-    { label: "Payment 4", percentage: 0.2 }
+    { label: "today", percentage: 0.4 },
+    { label: "2nd week", percentage: 0.2 },
+    { label: "3rd week", percentage: 0.2 },
+    { label: "4th week", percentage: 0.2 }
   ];
+  const maxCalculatorAmount = 1000000;
+  const normalizeCalculatorAmount = (input) => {
+    const amount = Math.min(maxCalculatorAmount, Math.max(0, Number(input?.value || 0) || 0));
+    if (input && Number(input.value || 0) !== amount) input.value = String(amount);
+    if (input) input.max = String(maxCalculatorAmount);
+    return amount;
+  };
   const pulse = (element) => {
     if (!element) return;
     element.classList.remove("number-pulse");
@@ -460,15 +502,18 @@
   if (homeSplitPreview) {
     const amountInput = homeSplitPreview.querySelector("[data-home-split-amount]");
     const payment = homeSplitPreview.querySelector("[data-home-split-payment]");
-    const rows = Array.from(homeSplitPreview.querySelectorAll("[data-home-split-row]"));
+    const rows = Array.from(homeSplitPreview.querySelectorAll(".mini-split-row"));
     const meter = homeSplitPreview.querySelector("[data-home-split-meter]");
     const updateHomeSplit = () => {
-      const amount = Math.max(0, Number(amountInput?.value || 0));
+      const amount = normalizeCalculatorAmount(amountInput);
       const payments = splitPlan.map((item) => amount * item.percentage);
       if (payment) payment.textContent = shortCurrency(payments[0]);
       rows.forEach((row, index) => {
         const planItem = splitPlan[index] || splitPlan[splitPlan.length - 1];
-        row.textContent = `${shortCurrency(payments[index])} ${planItem.label.toLowerCase()} (${Math.round(planItem.percentage * 100)}%)`;
+        const rowLabel = row.querySelector("[data-home-split-row]");
+        const combinedLabel = row.querySelector(":scope > p:first-child");
+        if (combinedLabel) combinedLabel.textContent = `${shortCurrency(payments[index])} ${planItem.label}`;
+        if (rowLabel) rowLabel.hidden = true;
       });
       if (meter) meter.style.setProperty("--split-progress", `${Math.min(100, Math.max(12, amount / 8))}%`);
       pulse(payment);
@@ -477,21 +522,50 @@
     updateHomeSplit();
   }
 
+  const fullPayCalculator = document.querySelector("[data-full-pay-calculator]");
+  if (fullPayCalculator) {
+    const amountInput = fullPayCalculator.querySelector("[data-full-pay-amount]");
+    const savingsOutput = fullPayCalculator.querySelector("[data-full-pay-savings]");
+    const totalOutput = fullPayCalculator.querySelector("[data-full-pay-total]");
+    const updateFullPay = () => {
+      const amount = normalizeCalculatorAmount(amountInput);
+      if (savingsOutput) savingsOutput.textContent = shortCurrency(amount * 0.25);
+      if (totalOutput) totalOutput.textContent = shortCurrency(amount * 0.75);
+      pulse(savingsOutput);
+      pulse(totalOutput);
+    };
+    amountInput?.addEventListener("input", updateFullPay);
+    updateFullPay();
+  }
+
+  const fixedInstallmentLabels = ["today", "2nd week", "3rd week", "4th week"];
+  document.querySelectorAll(".final-phone.front .final-phone-header p").forEach((text) => {
+    if (text.textContent.trim() === "Then every two weeks") text.textContent = "Then every week";
+  });
+  document.querySelectorAll(".final-phone.front .final-phone-pill").forEach((row, index) => {
+    const label = row.querySelector("span");
+    if (label) label.textContent = fixedInstallmentLabels[index] || fixedInstallmentLabels[fixedInstallmentLabels.length - 1];
+  });
+
+  const heroInstallmentRows = document.querySelectorAll(".brand-shell .interactive-panel .grid.gap-3 > div > p");
+  if (heroInstallmentRows.length === 4) {
+    ["$153.60 today", "$76.80 2nd week", "$76.80 3rd week", "$76.80 4th week"].forEach((text, index) => {
+      heroInstallmentRows[index].textContent = text;
+    });
+  }
+
   const splitCalculator = document.querySelector("[data-split-calculator]");
   if (splitCalculator) {
     const amountInput = splitCalculator.querySelector("[data-split-amount]");
     const totalOutput = splitCalculator.querySelector("[data-split-total]");
     const rows = Array.from(splitCalculator.querySelectorAll("[data-installment-row]"));
     const updateSplit = () => {
-      const amount = Math.max(0, Number(amountInput?.value || 0));
-      const now = new Date();
+      const amount = normalizeCalculatorAmount(amountInput);
       if (totalOutput) totalOutput.textContent = shortCurrency(amount);
       rows.forEach((row, index) => {
-        const date = new Date(now);
         const planItem = splitPlan[index] || splitPlan[splitPlan.length - 1];
-        date.setDate(now.getDate() + index * 14);
         row.querySelector("[data-installment-amount]").textContent = shortCurrency(amount * planItem.percentage);
-        row.querySelector("[data-installment-date]").textContent = `${date.toLocaleDateString("en-US", { month: "short", day: "numeric" })} • ${Math.round(planItem.percentage * 100)}%`;
+        row.querySelector("[data-installment-date]").textContent = planItem.label;
       });
       pulse(totalOutput);
     };
@@ -554,6 +628,17 @@
     updateRoi();
   }
 
+  document.querySelectorAll("section").forEach((section) => {
+    const kicker = section.querySelector(".section-kicker");
+    const paragraph = section.querySelector("p:not(.section-kicker)");
+    if (kicker?.textContent.trim() === "BEFORE YOU APPLY" && paragraph) {
+      paragraph.innerHTML = paragraph.innerHTML.replace(
+        "essential information",
+        'essential<br class="hidden lg:block"> information'
+      );
+    }
+  });
+
   const billPaySwitcher = document.querySelector("[data-bill-pay-switcher]");
   if (billPaySwitcher) {
     const buttons = Array.from(billPaySwitcher.querySelectorAll("[data-bill-pay-mode]"));
@@ -565,8 +650,8 @@
       four: {
         label: "Four Part Plan",
         heading: "Spread one bill across four scheduled payments.",
-        copy: "Pay 40% upfront, followed by three scheduled payments of 20% each. Every payment is shown before you confirm, making it easier to plan your budget with confidence.",
-        schedule: ["$153.60", "$76.80", "$76.80", "$76.80"]
+        copy: "Pay the first payment today, followed by three scheduled payments each week. Every payment is shown before you confirm, making it easier to plan your budget with confidence.",
+        schedule: ["$153.60 today", "$76.80 2nd week", "$76.80 3rd week", "$76.80 4th week"]
       },
       once: {
         label: "PAY IN FULL",
