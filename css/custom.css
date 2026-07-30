@@ -1092,6 +1092,11 @@ header nav {
     font-size: 0.7rem;
   }
 
+  .application-textarea-wrap .field-shell {
+    height: 6rem;
+    min-height: 6rem;
+  }
+
   .application-select-menu small {
     font-size: 0.56rem;
   }
