@@ -949,6 +949,25 @@ header nav {
   width: 0.85rem;
 }
 
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  transform: translateY(-2px);
+  background: #1e6feb;
+  outline: none;
+}
+
+.social-brand-icon {
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
 .modal-form [data-contact-tabs] {
   border-radius: 1.75rem;
 }
@@ -1566,8 +1585,23 @@ select.field-shell {
   .timeline-carousel [data-timeline-prev],
   .timeline-carousel [data-timeline-next] {
     flex: 0 0 auto;
+    max-width: none;
+    padding-right: 0.9rem !important;
+    padding-left: 0.9rem !important;
+    font-size: 0.88rem;
     white-space: nowrap;
     overflow-wrap: normal;
+  }
+
+  .timeline-carousel > div:last-child {
+    gap: 0.5rem !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .timeline-carousel > div:last-child > div[aria-label="Timeline progress"] {
+    flex: 0 0 auto;
+    gap: 0.35rem;
   }
 }
 
@@ -2107,7 +2141,7 @@ select.field-shell {
 
 @media (max-width: 480px) {
   .brand-shell {
-    padding-top: 7rem !important;
+    padding-top: 8.5rem !important;
   }
 
   .brand-shell h1,
