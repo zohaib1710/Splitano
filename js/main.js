@@ -9,22 +9,37 @@
 
   const titleCaseHeadings = (root = document) => {
     const headingWords = /\b[\p{L}][\p{L}'’-]*\b/gu;
+    const toTitleCase = (text) => text.replace(headingWords, (word) => {
+      if (word.length > 1 && word === word.toUpperCase()) return word;
+      const lower = word.toLowerCase();
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    });
     root.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
       const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
       const textNodes = [];
       let node;
       while ((node = walker.nextNode())) textNodes.push(node);
-      textNodes.forEach((textNode) => {
-        textNode.textContent = textNode.textContent.replace(headingWords, (word) => {
-          if (word.length > 1 && word === word.toUpperCase()) return word;
-          const lower = word.toLowerCase();
-          return lower.charAt(0).toUpperCase() + lower.slice(1);
-        });
+      textNodes.forEach((textNode) => { textNode.textContent = toTitleCase(textNode.textContent); });
+    });
+    return toTitleCase;
+  };
+
+  const toTitleCase = titleCaseHeadings();
+  const titleCaseShortUiText = (root = document) => {
+    root.querySelectorAll("label, button, a, strong, p.text-sm, p.font-extrabold, .final-phone-pill span").forEach((element) => {
+      const directText = Array.from(element.childNodes)
+        .filter((node) => node.nodeType === Node.TEXT_NODE)
+        .map((node) => node.textContent.trim())
+        .join(" ")
+        .trim();
+      if (!directText || directText.length > 60 || /[.!?,:;]/.test(directText)) return;
+      element.childNodes.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) node.textContent = toTitleCase(node.textContent);
       });
     });
   };
 
-  titleCaseHeadings();
+  titleCaseShortUiText();
 
   const cleanNavigationAndCtas = () => {
     document.querySelectorAll('a[href="business.html"], a[href="credit-builder.html"]').forEach((link) => {
@@ -105,6 +120,7 @@
     document.body.appendChild(modal);
     getStartedModal = modal;
     titleCaseHeadings(modal);
+    titleCaseShortUiText(modal);
     initApplicationForm(modal);
     if (window.lucide) window.lucide.createIcons();
     return modal;
