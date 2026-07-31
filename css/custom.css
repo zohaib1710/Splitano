@@ -353,6 +353,20 @@ header nav {
   color: #1e6feb !important;
 }
 
+/* Keep mouse clicks free of the browser's blue focus halo while preserving a clear keyboard state. */
+[data-site-header] a:focus:not(:focus-visible),
+[data-site-header] button:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+[data-site-header] a:focus-visible,
+[data-site-header] button:focus-visible {
+  outline: 2px solid var(--gold) !important;
+  outline-offset: 4px;
+  box-shadow: none !important;
+}
+
 [data-nav-link][aria-current="page"] {
   color: #1e6feb !important;
   font-weight: 900;
