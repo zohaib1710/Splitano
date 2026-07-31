@@ -7,6 +7,25 @@
   let getStartedModal = null;
   let lastModalTrigger = null;
 
+  const titleCaseHeadings = (root = document) => {
+    const headingWords = /\b[\p{L}][\p{L}'’-]*\b/gu;
+    root.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
+      const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+      const textNodes = [];
+      let node;
+      while ((node = walker.nextNode())) textNodes.push(node);
+      textNodes.forEach((textNode) => {
+        textNode.textContent = textNode.textContent.replace(headingWords, (word) => {
+          if (word.length > 1 && word === word.toUpperCase()) return word;
+          const lower = word.toLowerCase();
+          return lower.charAt(0).toUpperCase() + lower.slice(1);
+        });
+      });
+    });
+  };
+
+  titleCaseHeadings();
+
   const cleanNavigationAndCtas = () => {
     document.querySelectorAll('a[href="business.html"], a[href="credit-builder.html"]').forEach((link) => {
       const label = link.textContent.trim().toLowerCase();
@@ -85,6 +104,7 @@
     `;
     document.body.appendChild(modal);
     getStartedModal = modal;
+    titleCaseHeadings(modal);
     initApplicationForm(modal);
     if (window.lucide) window.lucide.createIcons();
     return modal;
