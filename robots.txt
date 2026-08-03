@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://splitano.com/sitemap.xml
