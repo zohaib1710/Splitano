@@ -41,7 +41,39 @@
 
   titleCaseShortUiText();
 
+  document.querySelectorAll('input[type="number"]').forEach((input) => {
+    input.inputMode = "decimal";
+    if (!input.max) input.max = "1000000";
+    input.addEventListener("keydown", (event) => {
+      if (["e", "E", "+", "-"].includes(event.key)) event.preventDefault();
+    });
+    input.addEventListener("input", () => {
+      const amount = Number(input.value);
+      if (Number.isFinite(amount) && amount > Number(input.max)) input.value = input.max;
+    });
+  });
+
   const cleanNavigationAndCtas = () => {
+    const wordingReplacements = new Map([
+      ["unless a separate partnership is announced.", ""],
+      ["compliance partners", "compliance providers"],
+      ["business partnership", "payment support"],
+      ["Business partnership", "Payment support"],
+      ["platform partnerships", "platform questions"],
+      ["Partner fit", "Service fit"],
+      ["Partner checklist", "Service checklist"],
+      ["Partnership requests", "Support requests"]
+    ]);
+    const wordingWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const wordingNodes = [];
+    let wordingNode;
+    while ((wordingNode = wordingWalker.nextNode())) wordingNodes.push(wordingNode);
+    wordingNodes.forEach((node) => {
+      wordingReplacements.forEach((replacement, phrase) => {
+        node.textContent = node.textContent.replaceAll(phrase, replacement);
+      });
+    });
+
     document.querySelectorAll('a[href="business.html"], a[href="credit-builder.html"]').forEach((link) => {
       const label = link.textContent.trim().toLowerCase();
       const isNavigationItem = link.matches("[data-nav-link]") || link.closest("footer") || label === "business" || label === "credit builder";
@@ -331,6 +363,32 @@
     const status = form.querySelector("[data-application-status]");
     const maxFileSize = 10 * 1024 * 1024;
     const validFileTypes = ["application/pdf", "image/jpeg", "image/png"];
+    const fullName = form.elements.full_name;
+    const phone = form.elements.phone;
+    const email = form.elements.email;
+    const provider = form.elements.provider;
+    if (fullName) {
+      fullName.pattern = "\\p{L}[\\p{L} .'-]{1,}";
+      fullName.maxLength = 100;
+    }
+    if (phone) {
+      phone.pattern = "\\+?[0-9()\\s.-]{7,}";
+      phone.maxLength = 24;
+      phone.inputMode = "tel";
+    }
+    if (email) {
+      email.maxLength = 254;
+      email.inputMode = "email";
+    }
+    if (provider) provider.maxLength = 120;
+
+    const sanitizeField = (field) => {
+      if (!field) return;
+      if (field === fullName) field.value = field.value.replace(/[^\p{L} .'-]/gu, "");
+      if (field === phone) {
+        field.value = field.value.replace(/[^0-9+()\s.-]/g, "").replace(/(?!^)\+/g, "");
+      }
+    };
 
     const errorFor = (name) => form.querySelector(`[data-application-error="${name}"]`);
     const showError = (field, message) => {
@@ -397,11 +455,12 @@
 
     form.querySelectorAll("input:not([type=hidden]), textarea").forEach((field) => {
       field.addEventListener("input", () => {
+        sanitizeField(field);
         if (field.getAttribute("aria-invalid") === "true") clearError(field);
-        field.classList.toggle("is-valid", Boolean(field.value.trim()));
+        field.classList.toggle("is-valid", Boolean(field.value.trim()) && field.checkValidity());
       });
       field.addEventListener("blur", () => {
-        field.classList.toggle("is-valid", Boolean(field.value.trim()) && field.getAttribute("aria-invalid") !== "true");
+        field.classList.toggle("is-valid", Boolean(field.value.trim()) && field.checkValidity() && field.getAttribute("aria-invalid") !== "true");
       });
     });
     notesInput?.addEventListener("input", () => {
@@ -425,15 +484,13 @@
       fields.forEach((field) => clearError(field));
       clearError(paymentInput);
 
-      const fullName = form.elements.full_name;
-      const phone = form.elements.phone;
-      const email = form.elements.email;
-      const provider = form.elements.provider;
-      if (!fullName.value.trim()) { showError(fullName, "Enter your full name."); isValid = false; }
+    if (!fullName.value.trim()) { showError(fullName, "Enter your full name."); isValid = false; }
+      else if (!fullName.checkValidity()) { showError(fullName, "Enter a valid name using letters, spaces, apostrophes, or hyphens."); isValid = false; }
       if (!phone.value.trim()) { showError(phone, "Enter your phone number."); isValid = false; }
-      else if (!/^[+()\d\s.-]{7,}$/.test(phone.value.trim())) { showError(phone, "Enter a valid phone number."); isValid = false; }
+      else if (!phone.checkValidity() || !/^[+()\d\s.-]{7,}$/.test(phone.value.trim())) { showError(phone, "Enter a valid phone number."); isValid = false; }
       if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { showError(email, "Enter a valid email address."); isValid = false; }
       if (!provider.value.trim()) { showError(provider, "Enter your bill provider."); isValid = false; }
+      else if (!provider.checkValidity()) { showError(provider, "Enter a valid bill provider."); isValid = false; }
       if (!paymentInput.value) { showError(paymentInput, "Choose a payment option."); isValid = false; }
       const fileMessage = validateFile(fileInput.files?.[0]);
       if (fileMessage) { showError(fileInput, fileMessage); isValid = false; }
@@ -738,12 +795,81 @@
             }
           });
         });
-        if (subject) subject.value = type === "business" ? "Business partnership" : "Customer support";
+        if (subject) subject.value = "Customer support";
       };
       buttons.forEach((button) => button.addEventListener("click", () => setTab(button.dataset.contactTab)));
       setTab("support");
     });
   };
+  const contactApplicationForm = document.querySelector("[data-contact-form]");
+  if (contactApplicationForm) {
+    contactApplicationForm.removeAttribute("data-contact-form");
+    contactApplicationForm.setAttribute("data-application-form", "");
+    contactApplicationForm.classList.add("application-form", "mx-auto", "w-full", "max-w-3xl");
+    contactApplicationForm.innerHTML = `
+      <div data-contact-step="1">
+        <p class="section-kicker">Step 1 Of 2</p>
+        <h2 class="mt-3 text-3xl font-extrabold text-navy">Tell Us About You And Your Bill.</h2>
+        <div class="application-fields mt-6 grid gap-4 md:grid-cols-2">
+        <label class="application-label">Full name<div class="application-input-wrap"><i data-lucide="user-round"></i><input name="full_name" required class="field-shell" type="text" autocomplete="name" placeholder="Enter your full name"></div><p data-application-error="full_name" class="application-error"></p></label>
+        <label class="application-label">Phone number<div class="application-input-wrap"><i data-lucide="phone"></i><input name="phone" required class="field-shell" type="tel" autocomplete="tel" placeholder="(123) 456-7890"></div><p data-application-error="phone" class="application-error"></p></label>
+        <label class="application-label md:col-span-2">Email address <span>(optional)</span><div class="application-input-wrap"><i data-lucide="mail"></i><input name="email" class="field-shell" type="email" autocomplete="email" placeholder="Enter your email address"></div><p data-application-error="email" class="application-error"></p></label>
+        <label class="application-label md:col-span-2">Bill provider<div class="application-input-wrap"><i data-lucide="landmark"></i><input name="provider" required class="field-shell" type="text" placeholder="Enter the name of your provider"></div><p data-application-error="provider" class="application-error"></p></label>
+        </div>
+        <button data-contact-next class="btn-primary mt-6" type="button">Continue <i data-lucide="arrow-right" class="h-5 w-5"></i></button>
+      </div>
+      <div data-contact-step="2" hidden>
+        <p class="section-kicker">Step 2 Of 2</p>
+        <h2 class="mt-3 text-3xl font-extrabold text-navy">Choose How You Want To Pay.</h2>
+        <div class="application-fields mt-6 grid gap-4">
+        <div class="application-label md:col-span-2"><span>Payment option</span><div class="application-select" data-payment-select><button data-payment-trigger class="application-select-trigger" type="button" aria-expanded="false" aria-controls="contact-payment-options"><span><i data-lucide="credit-card"></i><span data-payment-label>Select your payment option</span></span><i data-lucide="chevron-down"></i></button><div id="contact-payment-options" data-payment-menu class="application-select-menu" hidden><button data-payment-choice="pay-in-4" type="button"><span class="application-option-icon"><i data-lucide="calendar-days"></i></span><span><strong>Pay in 4</strong><small>Split your bill into 4 payments with the first payment due today and the remaining payments scheduled each week.</small></span></button><button data-payment-choice="pay-in-full" type="button"><span class="application-option-icon application-option-icon-green"><i data-lucide="banknote"></i></span><span><strong>Pay in Full</strong><small>Pay your bill in full today and save 25% on our service fee.</small></span></button></div></div><input data-payment-input name="payment_option" required type="hidden"><p data-application-error="payment_option" class="application-error"></p></div>
+        <div class="application-label md:col-span-2"><span>Upload your bill</span><label class="application-upload" data-upload-dropzone><input data-file-input name="bill_file" required type="file" accept=".pdf,.jpg,.jpeg,.png"><span class="application-upload-icon"><i data-lucide="cloud-upload"></i></span><span><strong data-file-name>Click to upload or drag and drop</strong><small>PDF, JPG, PNG up to 10MB</small></span></label><p data-application-error="bill_file" class="application-error"></p></div>
+        <label class="application-label md:col-span-2">Additional notes <span>(optional)</span><div class="application-input-wrap application-textarea-wrap"><i data-lucide="message-square-text"></i><textarea data-notes-input name="notes" class="field-shell" rows="3" maxlength="500" placeholder="Anything you'd like our team to know?"></textarea><span class="application-counter"><span data-notes-count>0</span>/500</span></div><p data-application-error="notes" class="application-error"></p></label>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button data-contact-back class="rounded-full bg-paleblue px-6 py-3 font-extrabold text-navy" type="button"><i data-lucide="arrow-left" class="h-5 w-5"></i>Back</button>
+          <button class="btn-primary application-submit" type="submit"><i data-lucide="lock-keyhole"></i>Submit application</button>
+        </div>
+      </div>
+      <p data-application-status class="mt-3 font-bold text-navy" role="status"></p>
+    `;
+    initApplicationForm(contactApplicationForm.parentElement);
+    if (window.lucide) window.lucide.createIcons();
+
+    const contactSteps = Array.from(contactApplicationForm.querySelectorAll("[data-contact-step]"));
+    const showContactStep = (step) => contactSteps.forEach((panel, index) => { panel.hidden = index !== step; });
+    contactApplicationForm.querySelector("[data-contact-next]")?.addEventListener("click", () => {
+      const requiredFields = [contactApplicationForm.elements.full_name, contactApplicationForm.elements.phone, contactApplicationForm.elements.provider];
+      const firstEmpty = requiredFields.find((field) => !field.value.trim());
+      if (firstEmpty) {
+        firstEmpty.focus();
+        firstEmpty.reportValidity();
+        return;
+      }
+      showContactStep(1);
+      contactApplicationForm.querySelector("[data-payment-trigger]")?.focus();
+    });
+    contactApplicationForm.querySelector("[data-contact-back]")?.addEventListener("click", () => showContactStep(0));
+
+    const contactSection = contactApplicationForm.closest("section");
+    const contactLayout = contactSection?.firstElementChild;
+    contactLayout?.classList.remove("max-w-7xl", "lg:grid-cols-[1fr_0.75fr]");
+    contactLayout?.classList.add("max-w-4xl");
+    contactSection?.querySelector("aside")?.remove();
+    contactSection?.querySelectorAll("[data-faq-item]").forEach((item) => {
+      const heading = item.querySelector("h3");
+      if (heading?.textContent.includes("businesses partner")) {
+        heading.textContent = "What bills can Splitano help with?";
+        const answer = item.querySelector("p");
+        if (answer) answer.textContent = "Splitano supports eligible utility, insurance, and medical bills, subject to review and eligibility.";
+      }
+    });
+    contactSection?.querySelectorAll("h3, p").forEach((element) => {
+      if (element.textContent.includes("Better business replies")) element.textContent = "Clearer support replies";
+      if (element.textContent.includes("Partnership requests")) element.textContent = "Support requests include enough detail for a useful first conversation.";
+    });
+  }
+
   initContactForms();
   initContactTabs();
 
