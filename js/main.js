@@ -826,9 +826,9 @@
         <div class="application-label md:col-span-2"><span>Upload your bill</span><label class="application-upload" data-upload-dropzone><input data-file-input name="bill_file" required type="file" accept=".pdf,.jpg,.jpeg,.png"><span class="application-upload-icon"><i data-lucide="cloud-upload"></i></span><span><strong data-file-name>Click to upload or drag and drop</strong><small>PDF, JPG, PNG up to 10MB</small></span></label><p data-application-error="bill_file" class="application-error"></p></div>
         <label class="application-label md:col-span-2">Additional notes <span>(optional)</span><div class="application-input-wrap application-textarea-wrap"><i data-lucide="message-square-text"></i><textarea data-notes-input name="notes" class="field-shell" rows="3" maxlength="500" placeholder="Anything you'd like our team to know?"></textarea><span class="application-counter"><span data-notes-count>0</span>/500</span></div><p data-application-error="notes" class="application-error"></p></label>
         </div>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <button data-contact-back class="rounded-full bg-paleblue px-6 py-3 font-extrabold text-navy" type="button"><i data-lucide="arrow-left" class="h-5 w-5"></i>Back</button>
-          <button class="btn-primary application-submit" type="submit"><i data-lucide="lock-keyhole"></i>Submit application</button>
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+          <button data-contact-back class="inline-flex flex-none items-center gap-2 whitespace-nowrap rounded-full bg-paleblue px-6 py-3 font-extrabold text-navy" type="button"><i data-lucide="arrow-left" class="h-5 w-5"></i>Back</button>
+          <button class="btn-primary application-submit ml-auto" type="submit"><i data-lucide="lock-keyhole"></i>Submit application</button>
         </div>
       </div>
       <p data-application-status class="mt-3 font-bold text-navy" role="status"></p>
@@ -863,10 +863,6 @@
         const answer = item.querySelector("p");
         if (answer) answer.textContent = "Splitano supports eligible utility, insurance, and medical bills, subject to review and eligibility.";
       }
-    });
-    contactSection?.querySelectorAll("h3, p").forEach((element) => {
-      if (element.textContent.includes("Better business replies")) element.textContent = "Clearer support replies";
-      if (element.textContent.includes("Partnership requests")) element.textContent = "Support requests include enough detail for a useful first conversation.";
     });
   }
 
