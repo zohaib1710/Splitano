@@ -982,6 +982,18 @@ header nav {
   width: 1.15rem;
 }
 
+.social-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.social-button {
+  flex: 1 1 9rem;
+  min-width: 0;
+  white-space: nowrap;
+}
+
 .modal-form [data-contact-tabs] {
   border-radius: 1.75rem;
 }
