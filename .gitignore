@@ -1,0 +1,4 @@
+# Never commit live SMTP credentials or private rate-limit data.
+/smtp-config.php
+/server-config/smtp-config.php
+/splitano-private/
