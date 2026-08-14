@@ -9,6 +9,7 @@ return [
     'smtp_from_email' => 'info@splitano.com',
     'smtp_to_email' => 'info@splitano.com',
     'allowed_hosts' => [
+        'lemonchiffon-giraffe-806420.hostingersite.com',
         'splitano.com',
         'www.splitano.com',
         'localhost',

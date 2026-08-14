@@ -108,18 +108,30 @@
 
   cleanNavigationAndCtas();
 
+  const currentPage = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const popupFormSources = {
+    "index.html": "homepage-popup",
+    "how-it-works.html": "how-it-works-popup",
+    "pay-in-4.html": "pay-in-4-popup",
+    "bill-pay.html": "bill-pay-popup",
+    "billers.html": "billers-popup",
+    "contact.html": "contact-popup",
+    "about.html": "about-popup",
+    "privacy.html": "privacy-popup",
+    "terms.html": "terms-popup"
+  };
+
+  const applicationSecurityFields = (source) => `
+    <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Leave this field empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+    <input name="form_source" type="hidden" value="${source}">
+    <input name="form_started_at" type="hidden" value="${Math.floor(Date.now() / 1000)}">
+  `;
+
   const createGetStartedModal = () => {
     if (getStartedModal) return getStartedModal;
 
     const modal = document.createElement("div");
-    const homepageFormAttributes = isHomepage
-      ? 'action="send-homepage-form.php" enctype="multipart/form-data" data-homepage-application-form'
-      : 'action="contact.html"';
-    const homepageSpamFields = isHomepage
-      ? `<div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Leave this field empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
-         <input name="form_source" type="hidden" value="homepage">
-         <input name="form_started_at" type="hidden" value="${Math.floor(Date.now() / 1000)}">`
-      : "";
+    const popupFormSource = popupFormSources[currentPage] || "homepage-popup";
     modal.setAttribute("data-get-started-modal", "");
     modal.setAttribute("aria-hidden", "true");
     modal.innerHTML = `
@@ -140,8 +152,8 @@
               <div class="application-benefit"><span class="application-benefit-icon"><i data-lucide="circle-check"></i></span><span><strong>Flexible Options</strong><small>Choose Pay in 4 or Pay in Full—whichever works for you.</small></span></div>
             </div>
           </aside>
-          <form data-application-form method="post" ${homepageFormAttributes} novalidate class="modal-form application-form rounded-3xl bg-white p-5 md:p-6">
-            ${homepageSpamFields}
+          <form data-application-form data-email-application-form method="post" action="send-homepage-form.php" enctype="multipart/form-data" novalidate class="modal-form application-form rounded-3xl bg-white p-5 md:p-6">
+            ${applicationSecurityFields(popupFormSource)}
             <img src="img/splitano-logo-black.png" alt="Splitano" class="site-logo modal-mobile-logo">
             <div class="application-fields grid gap-4 md:grid-cols-2">
               <label class="application-label">Full name<div class="application-input-wrap"><i data-lucide="user-round"></i><input name="full_name" required class="field-shell" type="text" autocomplete="name" placeholder="Enter your full name"></div><p data-application-error="full_name" class="application-error"></p></label>
@@ -288,8 +300,6 @@
     setGetStartedOpen(true, link);
   });
 
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
-  const isHomepage = currentPage.toLowerCase() === "index.html";
   document.querySelectorAll("[data-nav-link]").forEach((link) => {
     if (link.getAttribute("href") === currentPage) {
       link.setAttribute("aria-current", "page");
@@ -521,7 +531,7 @@
         if (startedAt) startedAt.value = String(Math.floor(Date.now() / 1000));
       };
 
-      if (form.hasAttribute("data-homepage-application-form")) {
+      if (form.hasAttribute("data-email-application-form")) {
         if (form.dataset.submitting === "true") return;
         form.dataset.submitting = "true";
         const submitButton = form.querySelector('button[type="submit"]');
@@ -860,8 +870,13 @@
   if (contactApplicationForm) {
     contactApplicationForm.removeAttribute("data-contact-form");
     contactApplicationForm.setAttribute("data-application-form", "");
+    contactApplicationForm.setAttribute("data-email-application-form", "");
+    contactApplicationForm.method = "post";
+    contactApplicationForm.action = "send-homepage-form.php";
+    contactApplicationForm.enctype = "multipart/form-data";
     contactApplicationForm.classList.add("application-form", "mx-auto", "w-full", "max-w-3xl");
     contactApplicationForm.innerHTML = `
+      ${applicationSecurityFields("contact-page")}
       <div data-contact-step="1">
         <p class="section-kicker">Step 1 Of 2</p>
         <h2 class="mt-3 text-3xl font-extrabold text-navy">Tell Us About You And Your Bill.</h2>
